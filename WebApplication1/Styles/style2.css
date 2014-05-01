@@ -1,0 +1,182 @@
+﻿@charset "utf-8";
+
+* {margin:0;padding:0}
+
+img {border:0}
+
+a:active
+{
+    outline: none;
+}
+
+a:focus
+{
+    -moz-outline-style: none;
+}
+
+html, body, form {
+    margin:0;
+    padding:0;
+    text-align:center;
+    font: normal 12px 'Lucida Grande', Arial, Sans-serif;
+    height:100%;
+}
+ul, li {
+    margin:0;
+    padding:0;
+    list-style:none
+}
+
+input {
+    padding-left:2px;
+}
+p {
+    margin:0;
+    padding:10px 0 10px 0
+}
+div#bodyContainer1 {
+    /*background: url(../Images/bg.png);*/
+    background-color:#606060;
+    height:67px;
+    min-width: 940px;
+}
+div#mainHeader {
+    height: 50px;
+    padding: 20px 20px 0 20px;
+}
+
+div#mainHeaderLogo {
+    position:absolute;
+    white-space:nowrap;
+    width:600px;
+    text-align:left;
+    font: 24px Helvetica, Arial, Sans-Serif;
+    color: #A0C1FE;
+    text-shadow: 0px 3px 4px #3B3B3B;
+    /* background: url(hyLogo.png) no-repeat; */
+    height: 25px;
+    text-align:center;
+    margin-left:215px;
+    cursor:default;
+    -webkit-user-select: none;     
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+div#mainNav ul {
+    text-align: center;
+    margin:0 0 0 0;
+    float:right;
+}
+div#mainNav ul li.topMenu {
+   
+    border-top:1px solid #4B4E43;
+    border-right:1px solid #4B4E43;
+    border-left:1px solid #4B4E43;
+    background: #969696;
+    background: -moz-linear-gradient(top, #969696 0%, #606060 100%);
+    background: -webkit-gradient(linear, left top, left bottom, 
+    color-stop(0%,#969696), color-stop(100%,#606060));
+    background: -webkit-linear-gradient(top, #969696 0%,#606060 100%);
+    background: -o-linear-gradient(top, #969696 0%,#606060 100%);
+    background: -ms-linear-gradient(top, #969696 0%,#606060 100%);
+    background: linear-gradient(top, #969696 0%,#606060 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( 
+    startColorstr='#969696', endColorstr='#606060',GradientType=0 );
+
+    width:116px;
+    height:16px;
+    margin:18px 5px 0 0;
+    padding:7px 0 5px 0;
+    float:left;
+}
+
+div#mainNav ul li a {
+    color:#fff;
+    text-decoration: none;
+    font-weight: bold
+}
+    
+div#mainNav ul li a:hover {
+    color: #0745D6;
+    text-decoration:underline
+}
+
+div#mainNav ul li li {}
+
+.menu_body, .menu_body2 {
+    display:none;
+    position:absolute;
+    * position:relative; /* Dirty, but works - Fixes IE misplacement of dropdown */
+    z-index:100;
+    width:auto;
+    border:1px solid #444;
+    background: #222;
+    text-align: left!important;
+    font-size:11px;
+    margin:6px 0!important;
+    padding:5px 28px 15px 15px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright:5px;
+}
+.menu_body li, .menu_body2 li{background:none;height:14px;width:auto;padding:3px 0 3px 0;list-style:square inside;color:#fff;margin-left:17px}
+.menu_body li.alt, .menu_body2 li.alt{}
+.menu_body li a, .menu_body2 li a{color:#fff}
+.menu_body li a:hover, .menu_body2 li a:hover{text-decoration:underline!important; color:#6bbcf4!important}
+.menu_body li:hover, .menu_body2 li:hover{list-style-type:disc;}
+
+.menu_head, .menu_head2 {display: block}
+
+
+div#bodyContainer2 {
+    width:100%;
+    min-height:700px;
+    background-color:#042B84;
+    border-top:1px solid #000000;
+    min-width: 940px;
+}
+
+div#contentContainer {
+    background-color:#D2D2D2;
+    width: 90%;
+    min-height:600px;
+    height:auto;
+    margin:auto;
+    border-left:1px solid black;
+    border-right:1px solid black;
+    min-width:810px;
+    max-width: 900px;
+    box-shadow: 5px 0px 5px -2px, -5px 0px 5px -2px, 0px 5px 5px -2px;
+}
+
+div#mainContent {
+
+    padding:30px 20px 15px 20px;
+
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -45px;
+    background-color:#042B84;
+    min-width:940px;
+}
+
+.push {
+    height: 45px; /* .push must be the same height as .footer */
+}
+
+div#bodyContainer3 {
+    background-color:#515151;
+    width:100%;
+    min-width:940px;
+    height: 45px;
+}
+div#mainFooter {
+    text-align:right;
+    padding:10px 20px 10px 20px;
+}

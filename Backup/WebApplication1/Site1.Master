@@ -1,0 +1,75 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="WebApplication1.Site1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset='UTF-8'>
+    <title>Hyland PMS</title>
+    <link rel="stylesheet" href="../Styles/style2.css"/>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="../Scripts/dropdown.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="wrapper">
+    <div id="bodyContainer1">
+        <div id="mainHeader">
+            <div id="mainHeaderLogo">Hyland Software - Resource Allocator</div>
+            <div id="mainNav">
+                <ul style="width:100%;float:left;min-width: 900px;">
+            <% if (Session["UserType"] != null && Session["UserType"].ToString() == "1")
+               { %>
+                    <li class="topMenu"><a href="#" class="menu_head">Admin</a>
+                        <ul class="menu_body">
+                            <li style="list-style:circle outside;padding-top:10px;">Users</li>
+                            <li><a href="Registration.aspx">Create a User</a></li>
+                            <li><a href="SearchUser.aspx">Edit a User</a></li>
+                            <li style="list-style:circle outside;padding-top:10px;">Logs</li>
+                            <li><a href="AdminLog.aspx">View Admin Logs</a></li>
+                            <li><a href="ManagerLog.aspx">View Manager Logs</a></li>
+                        </ul>
+                    </li>
+            <% } %>
+            <!-- ^^^^ Only show this code if admin account ^^^^ -->
+                    <li class="topMenu"><a href="#" class="menu_head2">Manager</a>
+                        <ul class="menu_body2">
+                            <li style="list-style:circle outside;padding-top:10px;">Projects</li>
+                            <li><a href="MyProjects.aspx">View My Projects</a></li>
+                            <li><a href="CreateProject.aspx">Create Project</a></li>
+                            <li><a href="EditProject.aspx">Edit Project</a></li>
+                            <li style="list-style:circle outside;padding-top:10px;">Resources</li>
+                            <li><a href="ResourceRegistration.aspx">Create Resource</a></li>
+                            <li><a href="SearchResource.aspx">Edit Resource</a></li>
+                            <li style="list-style:circle outside;padding-top:10px;">Misc.</li>
+                            <li><a href="AddResourceIndustry.aspx">Create New Customer</a></li>
+                            <li><a href="AddResourceRole.aspx">Create Resource Role</a></li>
+                            <li><a href="AddResourceIndustry.aspx">Create Industry</a></li>
+                        </ul>
+                    </li>
+                    <li class="topMenu" style="float:right">
+                    <asp:LinkButton ID="lbtnLogout" runat="server" OnClick="lbtnLogout_Click">Logout</asp:LinkButton></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="bodyContainer2">
+        <div id="contentContainer">
+            <div id="mainContent" style="height:auto;width:auto;"> <!-- Set size required for form here -->
+            <asp:ContentPlaceHolder ID="content" runat="server">
+            </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </div>
+    <div class="push"></div>
+</div>
+    <div id="bodyContainer3">
+        <div id="mainFooter">
+            Footer Copyright Stuff
+        </div>
+    </div>
+    </form>
+</body>
+</html>

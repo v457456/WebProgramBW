@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="\\pegasus\group3\" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="Web.config" publishTime="04/11/2014 10:23:29" />
+    <file relUrl="Dashboard.aspx" publishTime="04/11/2014 10:08:46" />
+    <file relUrl="Scripts/dropdown.js" publishTime="04/11/2014 10:08:47" />
+    <file relUrl="Styles/Site.css" publishTime="04/11/2014 10:08:47" />
+    <file relUrl="Site1.Master" publishTime="04/11/2014 10:08:47" />
+    <file relUrl="MyProjects.aspx" publishTime="04/11/2014 10:08:46" />
+    <file relUrl="ScheduleResourcesForm.aspx" publishTime="04/11/2014 10:08:47" />
+    <file relUrl="bin/WebApplication1.pdb" publishTime="04/11/2014 10:42:44" />
+    <file relUrl="SearchResource.aspx" publishTime="04/11/2014 10:08:47" />
+    <file relUrl="Styles/style2.css" publishTime="04/11/2014 10:08:47" />
+    <file relUrl="Registration.aspx" publishTime="04/11/2014 10:08:47" />
+    <file relUrl="CreateProject.aspx" publishTime="04/11/2014 10:08:46" />
+    <file relUrl="Images/bg.png" publishTime="04/11/2014 10:08:47" />
+    <file relUrl="bin/WebApplication1.dll" publishTime="04/11/2014 10:42:44" />
+    <file relUrl="SearchUser.aspx" publishTime="04/11/2014 10:08:47" />
+    <file relUrl="ResourceRegistration.aspx" publishTime="04/11/2014 10:08:47" />
+    <file relUrl="EditProject.aspx" publishTime="04/11/2014 10:08:46" />
+    <file relUrl="Default.aspx" publishTime="04/11/2014 10:08:46" />
+    <file relUrl="Images/loginlogo.png" publishTime="04/11/2014 10:08:47" />
+  </publishProfile>
+</publishData>
