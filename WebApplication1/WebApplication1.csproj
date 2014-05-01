@@ -77,7 +77,7 @@
     <Content Include="Manager\ScheduleResourcesForm.aspx" />
     <Content Include="Scripts\dropdown.js" />
     <Content Include="Manager\SearchResource.aspx" />
-    <Content Include="Admin\SearchUser.aspx" />
+    <Content Include="Admin\ManageUser.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Styles\style2.css" />
     <Content Include="Web.config">
@@ -153,12 +153,12 @@
     <Compile Include="Manager\SearchResource.aspx.designer.cs">
       <DependentUpon>SearchResource.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\SearchUser.aspx.cs">
-      <DependentUpon>SearchUser.aspx</DependentUpon>
+    <Compile Include="Admin\ManageUser.aspx.cs">
+      <DependentUpon>ManageUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\SearchUser.aspx.designer.cs">
-      <DependentUpon>SearchUser.aspx</DependentUpon>
+    <Compile Include="Admin\ManageUser.aspx.designer.cs">
+      <DependentUpon>ManageUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
