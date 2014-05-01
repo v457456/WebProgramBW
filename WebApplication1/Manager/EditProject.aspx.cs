@@ -13,7 +13,8 @@ namespace WebApplication1
     public partial class EditProject : System.Web.UI.Page
     {
 
-        private string origManagerID, origProjectID, origProjectName, origCustomerID, origIndustryID, origStartDate, origEndDate; //set original fields for later checking & logging
+        private string origManagerID, origProjectID, origProjectName, origCustomerID, origIndustryID, origStartDate, origEndDate, origStartDateFlex, origEndDateFlex, origProjectStage; //set original fields for later checking & logging
+        private bool origStageOverride;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,7 +27,6 @@ namespace WebApplication1
                 if (Request.QueryString["ProjectID"] != null)
                 {
                     LoadGrid("[Name]", "ASC");
-
                 }
                 else
                 {
@@ -40,12 +40,14 @@ namespace WebApplication1
         {
             if (Global.isDebug) Response.Write("Inside of LoadProjectAttributes Successfully!<br/>");
             SqlConnection con = new SqlConnection(Global.getConnectionString());
-            DataSet customers = new DataSet(), industries = new DataSet(), projData = new DataSet();
+            DataSet customers = new DataSet(), industries = new DataSet(), projData = new DataSet(), managers = new DataSet();
 
             SqlDataAdapter adptCustomers = new SqlDataAdapter("SELECT id, name FROM pms_customer;", con),
-                adptIndustries = new SqlDataAdapter("SELECT id, name FROM pms_industry;", con);
+                adptIndustries = new SqlDataAdapter("SELECT id, name FROM pms_industry;", con),
+                adptUsers = new SqlDataAdapter("SELECT id, first_name + ' ' + last_name + '(ID ' + CAST(id AS VARCHAR(12)) + ': ' + username + ')' AS name FROM pms_user;", con);
             adptCustomers.Fill(customers);
             adptIndustries.Fill(industries);
+            adptUsers.Fill(managers);
 
             //TODO: Create a field for Admin's to change the manager on a project
 
@@ -62,8 +64,17 @@ namespace WebApplication1
             DropDownList5.DataValueField = "id";
             DropDownList5.DataBind();
 
+            // fill manager dropdown list for admins
+            if (Global.isAdmin())
+            {
+                DropDownList8.DataSource = managers;
+                DropDownList8.DataTextField = "name";
+                DropDownList8.DataValueField = "id";
+                DropDownList8.DataBind();
+            }
+
             // grab data from DB and fill input fields on form
-            SqlDataAdapter adptProjectData = new SqlDataAdapter("SELECT id, name, start_date, end_date, customer_id, industry_id, manager_id FROM pms_project WHERE id = @projid;", con); // join users, grab pms_user.username for manager's username
+            SqlDataAdapter adptProjectData = new SqlDataAdapter("SELECT id, name, start_date, end_date, start_date_flex, end_date_flex, current_stage_override, customer_id, industry_id, manager_id FROM pms_project WHERE id = @projid;", con); // join users, grab pms_user.username for manager's username
             adptProjectData.SelectCommand.Parameters.Add("@projid", SqlDbType.Int).Value = projID;
             adptProjectData.Fill(projData);
 
@@ -77,9 +88,21 @@ namespace WebApplication1
 
             Text1.Value = DateTime.Parse(result["start_date"].ToString(), null, System.Globalization.DateTimeStyles.None).ToString("MM/dd/yyyy");
             Text5.Value = DateTime.Parse(result["end_date"].ToString(), null, System.Globalization.DateTimeStyles.None).ToString("MM/dd/yyyy");
-            Text3.Value = "0"; // TODO: 
-            Text4.Value = "0"; // TODO:
-
+            Text3.Value = result["start_date_flex"].ToString();
+            Text4.Value = result["end_date_flex"].ToString();
+            //set Project Stage
+            if (result["current_stage_override"] != DBNull.Value)
+            {
+                DropDownList9.SelectedValue = result["current_stage_override"].ToString();
+                DropDownList9.Enabled = true;
+                check_StageOverride.Checked = true;
+                origStageOverride = true;
+            }
+            else
+            {
+                origStageOverride = false;
+            }
+            
             // set original data for later logging
             origManagerID = result["manager_id"].ToString();
             // origManagerNa
@@ -89,6 +112,10 @@ namespace WebApplication1
             origIndustryID = DropDownList5.SelectedValue;
             origStartDate = Text1.Value;
             origEndDate = Text5.Value;
+            origStartDateFlex = Text3.Value;
+            origEndDateFlex = Text4.Value;
+            origProjectStage = DropDownList9.SelectedValue;
+         
 
             //enable fields for editing
             fieldsActive(true);
@@ -100,7 +127,12 @@ namespace WebApplication1
             DataSet myProjects = new DataSet();
             if (Session["UserID"] != null)
             {
-                SqlDataAdapter adptProjs = new SqlDataAdapter("SELECT pms_project.id as [ID], pms_project.name + ' (ID: ' + CAST(pms_project.id AS VARCHAR(12)) + ')' AS [NameAndID] FROM pms_project WHERE pms_project.manager_id = " + Session["UserID"].ToString() + " ORDER BY [name] ASC;", con);
+                SqlDataAdapter adptProjs;
+                if (Global.isAdmin())
+                    adptProjs = new SqlDataAdapter("SELECT pms_project.id as [ID], pms_project.name + ' (ID: ' + CAST(pms_project.id AS VARCHAR(12)) + ')' AS [NameAndID] FROM pms_project ORDER BY [NameAndID] ASC;", con);
+                else
+                    adptProjs = new SqlDataAdapter("SELECT pms_project.id as [ID], pms_project.name + ' (ID: ' + CAST(pms_project.id AS VARCHAR(12)) + ')' AS [NameAndID] FROM pms_project WHERE pms_project.manager_id = " + Session["UserID"].ToString() + " ORDER BY [NameAndID] ASC;", con);
+
                 adptProjs.Fill(myProjects);
 
                 DropDownList3.DataSource = myProjects;
@@ -123,8 +155,6 @@ namespace WebApplication1
                 Projectname.Disabled = !active;
                 DropDownList4.Enabled = active;
                 DropDownList5.Enabled = active;
-                DropDownList6.Enabled = active;
-                DropDownList7.Enabled = active;
                 Text1.Disabled = !active;
                 Text3.Disabled = !active;
                 Text4.Disabled = !active;
