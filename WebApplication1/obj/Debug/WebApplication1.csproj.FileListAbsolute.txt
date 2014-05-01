@@ -60,9 +60,3 @@ C:\Users\Owner\Dropbox\Documents(Ryan)\School\BW\Spring 2014\Web Programming - C
 C:\Users\Owner\Dropbox\Documents(Ryan)\School\BW\Spring 2014\Web Programming - CSC330\Hyland Web Project\WebApplication2\WebApplication1\obj\Debug\WebApplication1.csprojResolveAssemblyReference.cache
 C:\Users\Owner\Dropbox\Documents(Ryan)\School\BW\Spring 2014\Web Programming - CSC330\Hyland Web Project\WebApplication2\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\Owner\Dropbox\Documents(Ryan)\School\BW\Spring 2014\Web Programming - CSC330\Hyland Web Project\WebApplication2\WebApplication1\obj\Debug\WebApplication1.pdb
-C:\Users\Ryan\Documents\Repositories\Github\WebProgramBW\WebApplication1\bin\WebApplication1.dll.config
-C:\Users\Ryan\Documents\Repositories\Github\WebProgramBW\WebApplication1\bin\WebApplication1.dll
-C:\Users\Ryan\Documents\Repositories\Github\WebProgramBW\WebApplication1\bin\WebApplication1.pdb
-C:\Users\Ryan\Documents\Repositories\Github\WebProgramBW\WebApplication1\obj\Debug\WebApplication1.csprojResolveAssemblyReference.cache
-C:\Users\Ryan\Documents\Repositories\Github\WebProgramBW\WebApplication1\obj\Debug\WebApplication1.dll
-C:\Users\Ryan\Documents\Repositories\Github\WebProgramBW\WebApplication1\obj\Debug\WebApplication1.pdb

@@ -62,11 +62,10 @@
             margin-left:343px;
         }
         .auto-style2 {
-        height: 30px;
-        width: 166px;
-        padding-right: 5px;
-        font-weight: bold;
-    }
+            height: 30px;
+            width: 166px;
+            padding-right: 5px;
+        }
         </style>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"/>
 
@@ -92,22 +91,6 @@
     </h2>
         <hr style="width:95%; margin-top:5px; margin-left:auto; margin-right:auto"/>
     &nbsp;<table style="width: 700px; margin: 0 auto 0 auto;">
-        <% if (global_asax.isAdmin()) { %>
-        <tr>
-            <td align="right" class="auto-style2">
-                <b>Manager:</b></td>
-            <td align="left" class="style18">
-                <asp:DropDownList ID="DropDownList8" runat="server" Height="20px" Width="250px"
-                    DataTextField="ProjectSelect" 
-                    AppendDataBoundItems="true"
-                    OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged"
-                    AutoPostBack="true">
-                </asp:DropDownList>
-            </td>
-            <td align="right" class="style19">
-                <input id="check_Manager" type="checkbox" runat="server" disabled="disabled"/></td>
-        </tr>
-        <% } %>
         <tr>
             <td align="right" class="auto-style2">
                 Project Name:
@@ -116,7 +99,7 @@
                 <input type="text" id="Projectname" runat="server" />
             </td>
             <td align="right" class="style19">
-                <input id="check_ProjectName" type="checkbox" runat="server" disabled="disabled"/>
+                <input id="Checkbox1" type="checkbox" runat="server" disabled="disabled"/>
             </td>
         </tr>
         <tr>
@@ -130,7 +113,7 @@
                 </asp:DropDownList>
             &nbsp;</td>
             <td align="right" class="style19">
-                <input id="check_Customer" type="checkbox" runat="server" disabled="disabled"/>
+                <input id="Checkbox2" type="checkbox" runat="server" disabled="disabled"/>
             </td>
         </tr>
         <tr>
@@ -144,7 +127,7 @@
                 </asp:DropDownList>
             &nbsp;</td>
             <td align="right" class="style19">
-                <input id="check_Industry" type="checkbox" runat="server" disabled="disabled"/>
+                <input id="Checkbox3" type="checkbox" runat="server" disabled="disabled"/>
             </td>
         </tr>
         <tr>
@@ -155,7 +138,7 @@
                 <input id="Text1" type="text" runat="server" clientidmode="Static"/>
             </td>
             <td align="right" class="style19">
-                <input id="check_StartDate" type="checkbox" runat="server" disabled="disabled"/>
+                <input id="Checkbox4" type="checkbox" runat="server" disabled="disabled"/>
             </td>
         </tr>
         <tr>
@@ -165,7 +148,7 @@
             <td class="style18" align="left">
                 <input id="Text5" type="text" runat="server" clientidmode="Static"/></td>
             <td align="right" class="style19">
-                <input id="check_EndDate" type="checkbox" runat="server" disabled="disabled"/>
+                <input id="Checkbox5" type="checkbox" runat="server" disabled="disabled"/>
             </td>
         </tr>
         <tr>
@@ -173,42 +156,32 @@
                 Start Date Flexibility:
             </td>
             <td class="style18" align="left">
-                <div style="display:inline-block;vertical-align:middle;margin:0 3px 0 3px;">+/-</div>
-                <input id="Text3" type="text" runat="server" clientidmode="Static" maxlength="2"/> <div style="display:inline-block;vertical-align:middle;">Weeks</div>
+                <input id="Text3" type="text" runat="server" clientidmode="Static" maxlength="2"/>
+                <asp:DropDownList ID="DropDownList6" runat="server">
+                    <asp:ListItem Value="Days">Days</asp:ListItem>
+                    <asp:ListItem>Weeks</asp:ListItem>
+                    <asp:ListItem>Months</asp:ListItem>
+                </asp:DropDownList>
             </td>
             <td align="right" class="style19">
-                <input id="check_StartDateFlex" type="checkbox" runat="server" disabled="disabled"/>
+                <input id="Checkbox6" type="checkbox" runat="server" disabled="disabled"/>
             </td>
         </tr>
         <tr>
             <td align="right" class="auto-style2">
-                End Date Flexibility:</td>
+                End Date Flexibility:
+            </td>
             <td class="style18" align="left">
-                <div style="display:inline-block;vertical-align:middle;margin:0 3px 0 3px;">+/-</div>
-                <input id="Text4" type="text" runat="server" clientidmode="Static" maxlength="2" onkeydown=""/> <div style="display:inline-block;vertical-align:middle;">Weeks</div>
+                <input id="Text4" type="text" runat="server" clientidmode="Static" maxlength="2" onkeydown="!isNaN($('#inputid').val())"/>
+                <asp:DropDownList ID="DropDownList7" runat="server">
+                    <asp:ListItem Value="Days">Days</asp:ListItem>
+                    <asp:ListItem>Weeks</asp:ListItem>
+                    <asp:ListItem>Months</asp:ListItem>
+                </asp:DropDownList>
             </td>
             <td align="right" class="style19">
-                <input id="check_EndDateFlex" type="checkbox" runat="server" disabled="disabled"/>
+                <input id="Checkbox7" type="checkbox" runat="server" disabled="disabled"/>
             </td>
-        </tr>
-        <tr>
-            <td align="right" class="auto-style2">
-                Current Project Stage:</td>
-            <td class="style18" align="left">
-                <asp:DropDownList ID="DropDownList9" runat="server" Enabled="false">
-                    <asp:ListItem Value="1">1/10</asp:ListItem>
-                    <asp:ListItem Value="2">2/10</asp:ListItem>
-                    <asp:ListItem Value="3">3/10</asp:ListItem>
-                    <asp:ListItem Value="4">4/10</asp:ListItem>
-                    <asp:ListItem Value="5">5/10</asp:ListItem>
-                    <asp:ListItem Value="6">6/10</asp:ListItem>
-                    <asp:ListItem Value="7">7/10</asp:ListItem>
-                    <asp:ListItem Value="8">8/10</asp:ListItem>
-                    <asp:ListItem Value="9">9/10</asp:ListItem>
-                    <asp:ListItem Value="10">10/10</asp:ListItem>
-                </asp:DropDownList><div style="display:inline;margin-left:25px;"><input style="height:30px;vertical-align:middle;" id="check_StageOverride" type="checkbox" runat="server"/><div style="display:inline; margin-left:3px;padding-bottom:3px;vertical-align:middle;">Override</div></div></td>
-            <td align="right" class="style19">
-                &nbsp;</td>
         </tr>
     </table>
     <br />

@@ -31,24 +31,6 @@ namespace WebApplication1 {
         protected global::System.Web.UI.WebControls.Button UpdateButton;
         
         /// <summary>
-        /// DropDownList8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList8;
-        
-        /// <summary>
-        /// check_Manager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox check_Manager;
-        
-        /// <summary>
         /// Projectname control.
         /// </summary>
         /// <remarks>
@@ -58,13 +40,13 @@ namespace WebApplication1 {
         protected global::System.Web.UI.HtmlControls.HtmlInputText Projectname;
         
         /// <summary>
-        /// check_ProjectName control.
+        /// Checkbox1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox check_ProjectName;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox1;
         
         /// <summary>
         /// DropDownList4 control.
@@ -76,13 +58,13 @@ namespace WebApplication1 {
         protected global::System.Web.UI.WebControls.DropDownList DropDownList4;
         
         /// <summary>
-        /// check_Customer control.
+        /// Checkbox2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox check_Customer;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox2;
         
         /// <summary>
         /// DropDownList5 control.
@@ -94,13 +76,13 @@ namespace WebApplication1 {
         protected global::System.Web.UI.WebControls.DropDownList DropDownList5;
         
         /// <summary>
-        /// check_Industry control.
+        /// Checkbox3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox check_Industry;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox3;
         
         /// <summary>
         /// Text1 control.
@@ -112,13 +94,13 @@ namespace WebApplication1 {
         protected global::System.Web.UI.HtmlControls.HtmlInputText Text1;
         
         /// <summary>
-        /// check_StartDate control.
+        /// Checkbox4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox check_StartDate;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox4;
         
         /// <summary>
         /// Text5 control.
@@ -130,13 +112,13 @@ namespace WebApplication1 {
         protected global::System.Web.UI.HtmlControls.HtmlInputText Text5;
         
         /// <summary>
-        /// check_EndDate control.
+        /// Checkbox5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox check_EndDate;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox5;
         
         /// <summary>
         /// Text3 control.
@@ -148,13 +130,22 @@ namespace WebApplication1 {
         protected global::System.Web.UI.HtmlControls.HtmlInputText Text3;
         
         /// <summary>
-        /// check_StartDateFlex control.
+        /// DropDownList6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox check_StartDateFlex;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList6;
+        
+        /// <summary>
+        /// Checkbox6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox6;
         
         /// <summary>
         /// Text4 control.
@@ -166,31 +157,22 @@ namespace WebApplication1 {
         protected global::System.Web.UI.HtmlControls.HtmlInputText Text4;
         
         /// <summary>
-        /// check_EndDateFlex control.
+        /// DropDownList7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox check_EndDateFlex;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList7;
         
         /// <summary>
-        /// DropDownList9 control.
+        /// Checkbox7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList9;
-        
-        /// <summary>
-        /// check_StageOverride control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox check_StageOverride;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Checkbox7;
         
         /// <summary>
         /// EditResourcesButton control.
