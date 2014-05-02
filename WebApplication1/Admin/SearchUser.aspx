@@ -11,7 +11,7 @@
         }
         .style2
         {
-            height: 30px;
+            height: 20px;
             width: 129px;
             padding-right:5px;
         }
@@ -35,7 +35,6 @@
         Please fill in as many fields as possible and then click &#39;Search&#39; to list found users.<br />
         <br />
         <hr style="width:75%; margin-left:auto; margin-right:auto"/>
-        <br />
         <table style="width: 450px; height: 132px; color: #000000;margin: 0 auto 0 auto;" 
             aligntext" ="center">
             <tr>
@@ -48,11 +47,10 @@
                 <td align="right" class="style2">
                     Last Name: </td>
                 <td align="left" class="style1">
-                    <input id="Text2" type="/></td>
+                    &nbsp;Email Address:<input id="Text2" type="/></td>
             </tr>
             <tr>
-                <td align="right" class="style2">
-                    Email Address:</td>
+                <td align="right" class="style2"></td>
                 <td align="left" class="style1">
                     <input id="Text3" type="text" /></td>
             </tr>
@@ -90,6 +88,7 @@
                 </td>
             </tr>
         </table>
+        <br />
         <br />
         <div style="margin:0 auto 0 auto; width:750px">
             <asp:GridView ID="GridView1" runat="server" AllowPaging="True" GridLines="None" BackColor="#B3C0C4" 

@@ -123,8 +123,8 @@ namespace WebApplication1
                 Projectname.Disabled = !active;
                 DropDownList4.Enabled = active;
                 DropDownList5.Enabled = active;
-                DropDownList6.Enabled = active;
-                DropDownList7.Enabled = active;
+                //DropDownList6.Enabled = active; - DropDownList6 doesn't exist
+                //DropDownList7.Enabled = active; - DropDownList7 doesn't exist
                 Text1.Disabled = !active;
                 Text3.Disabled = !active;
                 Text4.Disabled = !active;
