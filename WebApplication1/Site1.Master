@@ -38,7 +38,6 @@
                         </ul>
                     </li>
             <% } %>
-            <!-- ^^^^ Only show this code if admin account ^^^^ -->
                     <li class="topMenu"><a href="#" class="menu_head2">Manager</a>
                         <ul class="menu_body2">
                             <li style="list-style:circle outside;padding-top:10px;">Projects</li>

@@ -206,7 +206,7 @@
                     <asp:ListItem Value="8">8/10</asp:ListItem>
                     <asp:ListItem Value="9">9/10</asp:ListItem>
                     <asp:ListItem Value="10">10/10</asp:ListItem>
-                </asp:DropDownList><div style="display:inline;margin-left:25px;"><input style="height:30px;vertical-align:middle;" id="check_StageOverride" type="checkbox" runat="server"/><div style="display:inline; margin-left:3px;padding-bottom:3px;vertical-align:middle;">Override</div></div></td>
+                </asp:DropDownList><div style="display:inline;margin-left:20px;"><input style="height:30px;vertical-align:middle;" id="check_StageOverride" type="checkbox" runat="server"/><div style="display:inline; margin-left:3px;padding-bottom:3px;vertical-align:middle;">Override</div></div></td>
             <td align="right" class="style19">
                 &nbsp;</td>
         </tr>
