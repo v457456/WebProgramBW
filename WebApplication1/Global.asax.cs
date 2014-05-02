@@ -27,8 +27,8 @@ namespace WebApplication1 {
             //return null;
         }
         
-        public static bool isAdmin() {
-            if (Convert.ToInt32(HttpContext.Current.Session["UserID"]) == AdminUserType) {
+        public static bool isAdmin() { //return true if admin, otherwise false
+            if (Convert.ToInt32(HttpContext.Current.Session["UserType"]) == AdminUserType) {
                 return true;
             }
             return false;

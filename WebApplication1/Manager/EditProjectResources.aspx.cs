@@ -72,7 +72,7 @@ namespace WebApplication1
                     if (Global.isDebug) Response.Write("Verified Project ID!<br/>");
                     SqlConnection con = new SqlConnection(Global.getConnectionString());
                     SqlCommand cmd = new SqlCommand("SELECT pms_resource.experience_level as [Experience_Level], pms_resource_role.name AS [Role], pms_resource.last_name + ', ' + pms_resource.first_name AS [Name], pms_resource.email_address AS [Email_Address] FROM pms_resourceproject INNER JOIN pms_resource ON pms_resource.id = pms_resourceproject.resource_id INNER JOIN pms_resource_role ON pms_resource_role.id = pms_resource.role_id WHERE pms_resourceproject.project_id = @projid ORDER BY " + sortExpr + " " + sortDirection + ";", con);
-                    cmd.Parameters.Add("@projid", SqlDbType.Int).Value = projectID;
+                    cmd.Parameters.Add("@projid", SqlDbType.Int).Value = projectID; //todo:
                     try
                     {
                         con.Open();
