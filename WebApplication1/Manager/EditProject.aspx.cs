@@ -34,6 +34,21 @@ namespace WebApplication1
                 }
                 fillProjectsDropDown();
             }
+            else
+            {
+                origProjectID = ViewState["origProjectID"].ToString();
+                origManagerID = ViewState["origManagerID"].ToString();
+                origProjectName = ViewState["origProjectName"].ToString();
+                origCustomerID = ViewState["origCustomerID"].ToString();
+                origIndustryID = ViewState["origIndustryID"].ToString();
+                origStartDate = ViewState["origStartDate"].ToString();
+                origEndDate = ViewState["origEndDate"].ToString();
+                origStartDateFlex = ViewState["origStartDateFlex"].ToString();
+                origEndDateFlex = ViewState["origEndDateFlex"].ToString();
+                origProjectStage = ViewState["origProjectStage"].ToString();
+                origStageOverride = Convert.ToBoolean(ViewState["origStageOverride"]);
+            }
+
         }
 
         private void LoadProjectAttributes(int projID)
@@ -44,7 +59,7 @@ namespace WebApplication1
 
             SqlDataAdapter adptCustomers = new SqlDataAdapter("SELECT id, name FROM pms_customer;", con),
                 adptIndustries = new SqlDataAdapter("SELECT id, name FROM pms_industry;", con),
-                adptUsers = new SqlDataAdapter("SELECT id, first_name + ' ' + last_name + '(ID ' + CAST(id AS VARCHAR(12)) + ': ' + username + ')' AS name FROM pms_user;", con);
+                adptUsers = new SqlDataAdapter("SELECT id, first_name + ' ' + last_name + ' (ID ' + CAST(id AS VARCHAR(12)) + ': ' + username + ')' AS name FROM pms_user;", con);
             adptCustomers.Fill(customers);
             adptIndustries.Fill(industries);
             adptUsers.Fill(managers);
@@ -97,10 +112,12 @@ namespace WebApplication1
                 DropDownList9.Enabled = true;
                 check_StageOverride.Checked = true;
                 origStageOverride = true;
+                ViewState["origStageOverride"] = origStageOverride;
             }
             else
             {
                 origStageOverride = false;
+                ViewState["origStageOverride"] = origStageOverride;
             }
             
             // set original data for later logging
@@ -115,6 +132,17 @@ namespace WebApplication1
             origStartDateFlex = Text3.Value;
             origEndDateFlex = Text4.Value;
             origProjectStage = DropDownList9.SelectedValue;
+
+            ViewState["origManagerID"] = origManagerID;
+            ViewState["origProjectID"] = origProjectID;
+            ViewState["origProjectName"] = origProjectName;
+            ViewState["origCustomerID"] = origCustomerID;
+            ViewState["origIndustryID"] = origIndustryID;
+            ViewState["origStartDate"] = origStartDate;
+            ViewState["origEndDate"] = origEndDate;
+            ViewState["origStartDateFlex"] = origStartDateFlex;
+            ViewState["origEndDateFlex"] = origEndDateFlex;
+            ViewState["origProjectStage"] = origProjectStage;
          
 
             //enable fields for editing
@@ -320,48 +348,271 @@ namespace WebApplication1
 
         protected void UpdateButton_Click(object sender, EventArgs e)
         {
-            string currentProjectID = Request.QueryString["ProjectID"].ToString();
-            if (currentProjectID.Equals(origProjectID)) // check to make sure project id loaded and project id to save to wasn't altered somehow.
+            if (Session["UserID"] == null)
             {
-                //TODO: create method to update database record.
-                logChanges();
+                Global.Application_SessionExpired();
+                return;
+            }
+            else
+            {
+                string currentProjectID = Request.QueryString["ProjectID"].ToString();
+                if (currentProjectID.Equals(origProjectID)) // check to make sure project id loaded and project id to save to wasn't altered somehow.
+                {
+                    string currentManagerID = DropDownList8.SelectedValue,
+                    currentProjectName = Projectname.Value,
+                    currentCustomerID = DropDownList4.SelectedValue,
+                    currentIndustryID = DropDownList5.SelectedValue,
+                    currentStartDate = Text1.Value,
+                    currentEndDate = Text5.Value,
+                    currentStartDateFlex = Text3.Value,
+                    currentEndDateFlex = Text4.Value,
+                    currentProjectStage = DropDownList9.SelectedValue;
+                    bool currentStageOverride = check_StageOverride.Checked;
+                    bool changedStage = false, changedOverride = false, useAuto = false;
+
+                    
+
+                    if (origStageOverride == true && currentStageOverride == true)
+                    {
+                        changedStage = (origProjectStage == currentProjectStage) ? false : true;
+                        useAuto = false;
+                    }
+                    else if (origStageOverride == false && currentStageOverride == false)
+                    {
+                        useAuto = true;
+                    }
+                    else if (origStageOverride == true && currentStageOverride == false)
+                    {
+                        useAuto = true; changedOverride = true;
+                    }
+                    else if (origStageOverride == false && currentStageOverride == true)
+                    {
+                        changedStage = (origProjectStage == currentProjectStage) ? false : true;
+                        useAuto = false; changedOverride = true;
+                    }
+
+                    if (check_Manager.Checked || check_ProjectName.Checked || check_Customer.Checked || check_Industry.Checked ||
+                        check_StartDate.Checked || check_EndDate.Checked || check_StartDateFlex.Checked || check_EndDateFlex.Checked || changedStage || useAuto || changedOverride) // check to see if anything was edited
+                    {
+                        SqlConnection con = new SqlConnection(Global.getConnectionString());
+                        SqlCommand cmd = new SqlCommand("UPDATE pms_project", con);
+                        String pre = " SET ";
+                        if (check_Manager.Checked)
+                        {
+                            cmd.CommandText += pre;
+                            cmd.CommandText += "manager_id=@managerid";
+                            cmd.Parameters.Add("@manager_id", SqlDbType.Int).Value = currentManagerID;
+                            pre = ", ";
+                        }
+                        if (check_ProjectName.Checked)
+                        {
+                            cmd.CommandText += pre;
+                            cmd.CommandText += "name=@projname";
+                            cmd.Parameters.Add("@projname", SqlDbType.VarChar).Value = currentProjectName;
+                            pre = ", ";
+                        }
+                        if (check_Customer.Checked)
+                        {
+                            cmd.CommandText += pre;
+                            cmd.CommandText += "customer_id=@custid";
+                            cmd.Parameters.Add("@custid", SqlDbType.Int).Value = currentCustomerID;
+                            pre = ", ";
+                        }
+                        if (check_Industry.Checked)
+                        {
+                            cmd.CommandText += pre;
+                            cmd.CommandText += "industry_id=@industid";
+                            cmd.Parameters.Add("@industid", SqlDbType.Int).Value = currentIndustryID;
+                            pre = ", ";
+                        }
+                        if (check_StartDate.Checked)
+                        {
+                            cmd.CommandText += pre;
+                            cmd.CommandText += "start_date=@startdate";
+                            cmd.Parameters.Add("@startdate", SqlDbType.Date).Value = currentStartDate;
+                            pre = ", ";
+                        }
+                        if (check_EndDate.Checked)
+                        {
+                            cmd.CommandText += pre;
+                            cmd.CommandText += "end_date=@enddate";
+                            cmd.Parameters.Add("@enddate", SqlDbType.Date).Value = currentEndDate;
+                            pre = ", ";
+                        }
+                        if (check_StartDateFlex.Checked)
+                        {
+                            cmd.CommandText += pre;
+                            cmd.CommandText += "start_date_flex=@startflex";
+                            cmd.Parameters.Add("@startflex", SqlDbType.Int).Value = currentStartDateFlex;
+                            pre = ", ";
+                        }
+                        if (check_EndDateFlex.Checked)
+                        {
+                            cmd.CommandText += pre;
+                            cmd.CommandText += "end_date_flex=@endflex";
+                            cmd.Parameters.Add("@endflex", SqlDbType.Int).Value = currentEndDateFlex;
+                            pre = ", ";
+                        }
+                        if (useAuto)
+                        {
+                            cmd.CommandText += pre;
+                            cmd.CommandText += "currentStageOverride=NULL";
+                        }
+                        else if (changedStage)
+                        {
+                            cmd.CommandText += pre;
+                            cmd.CommandText += "currentStageOverride=@curstage";
+                            cmd.Parameters.Add("@curstage", SqlDbType.Int).Value = currentProjectStage;
+                        }
+                        cmd.CommandText += " WHERE id=@projid";
+                        cmd.Parameters.Add("@projid", SqlDbType.Int).Value = currentProjectID;
+                        cmd.CommandText += ";";
+                        // SqlCommand cmd = new SqlCommand("SELECT pms_resource.experience_level as [Experience_Level], pms_resource_role.name AS [Role], pms_resource.last_name + ', ' + pms_resource.first_name AS [Name], pms_resource.email_address AS [Email_Address] FROM "
+                        // + "pms_resourceproject INNER JOIN pms_resource ON pms_resource.id = pms_resourceproject.resource_id INNER JOIN pms_resource_role ON pms_resource_role.id = pms_resource.role_id WHERE pms_resourceproject.project_id = @projid ORDER BY " + sortExpr + " " + sortDirection + ";", con);
+
+                        cmd.CommandText += ";";
+                        try
+                        {
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                        finally
+                        {
+                            con.Close();
+                        }
+                        
+                    }
+
+                    logChanges(check_Manager.Checked, check_ProjectName.Checked, check_Customer.Checked, check_Industry.Checked, check_StartDate.Checked, check_EndDate.Checked, check_StartDateFlex.Checked, check_EndDateFlex.Checked, changedOverride, changedStage, useAuto);
+                }
             }
         }
 
-        private void logChanges()
+        private void logChanges(bool managerChanged, bool nameChanged, bool customerChanged, bool industryChanged, bool startdateChanged, bool enddateChanged, bool startdateflexChanged, bool enddateflexChanged, bool overrideChanged, bool stageChanged, bool stageAuto)
         {
+            SqlConnection con = new SqlConnection(Global.getConnectionString());
             string currentProjectName = Projectname.Value,
                 currentCustomerID = DropDownList4.SelectedValue,
                 currentIndustryID = DropDownList5.SelectedValue,
                 currentStartDate = Text1.Value,
-                // currentManager = something.Value,
-                currentEndDate = Text5.Value;
+                currentManagerID = DropDownList8.SelectedValue,
+                currentEndDate = Text5.Value,
+                currentStartDateFlex = Text3.Value,
+                currentEndDateFlex = Text4.Value,
+                currentProjectStage = DropDownList9.SelectedValue;
+            bool currentStageOverride = check_StartDateFlex.Checked;
 
-            if (!currentProjectName.Equals(origProjectName))
+            string actionLog = "Changed";
+            string pre = " ";
+            string separator = " <br/>";
+
+            if (managerChanged)
             {
-                //TODO: log project name change
+                actionLog += pre;
+                actionLog += "ManagerID from" + origManagerID + " to " + currentManagerID;
+                pre = separator;
             }
 
-            if (!currentCustomerID.Equals(origCustomerID))
+            if (nameChanged)
             {
-                //TODO: log customer change
+                actionLog += pre;
+                actionLog += "Project Name from" + origProjectName + " to " + currentProjectName;
+                pre = separator;
             }
 
-            if (!currentIndustryID.Equals(origIndustryID))
+            if (customerChanged)
             {
-                //TODO: log industry change
+                SqlCommand cmd = new SqlCommand("SELECT name FROM pms_customer WHERE pms_customer.id = @custid;", con);
+                cmd.Parameters.Add("@custid", SqlDbType.Int).Value = origCustomerID;
+                try
+                {
+                    con.Open();
+                    string origcustomerName = (string)cmd.ExecuteScalar();
+                    cmd.Parameters.Add("@custid", SqlDbType.Int).Value = currentCustomerID;
+                    string currentcustomerName = (string)cmd.ExecuteScalar();
+                    actionLog += pre;
+                    actionLog += "Customer from" + origcustomerName + " to " + currentcustomerName;
+                    pre = separator;
+                }
+                catch { }
+                finally
+                {
+                    con.Close();
+                }
             }
 
-            if (!currentStartDate.Equals(origStartDate))
+            if (industryChanged)
             {
-                //TODO: log start date change
+                SqlCommand cmd = new SqlCommand("SELECT name FROM pms_industry WHERE pms_industry.id = @industid;", con);
+                cmd.Parameters.Add("@industid", SqlDbType.Int).Value = origIndustryID;
+                try
+                {
+                    con.Open();
+                    string origindustryName = (string)cmd.ExecuteScalar();
+                    cmd.Parameters.Add("@industid", SqlDbType.Int).Value = currentIndustryID;
+                    string currentindustryName = (string)cmd.ExecuteScalar();
+                    actionLog += pre;
+                    actionLog += "Industry from" + origindustryName + " to " + currentindustryName;
+                    pre = separator;
+                }
+                catch { }
+                finally
+                {
+                    con.Close();
+                }
             }
 
-            if (!currentEndDate.Equals(origEndDate))
+            if (startdateChanged)
             {
-                //TODO: log end date change
+                actionLog += pre;
+                actionLog += "Start date from" + origStartDate + " to " + currentStartDate;
+                pre = separator;
             }
 
+            if (enddateChanged)
+            {
+                actionLog += pre;
+                actionLog += "End date from" + origEndDate + " to " + currentEndDate;
+                pre = separator;
+            }
+
+            if (startdateflexChanged)
+            {
+                actionLog += pre;
+                actionLog += "Start date flexibility from" + origStartDateFlex + "weeks to " + currentStartDateFlex + " weeks";
+                pre = separator;
+            }
+
+            if (enddateflexChanged)
+            {
+                actionLog += pre;
+                actionLog += "End date flexibility from" + origEndDateFlex + "weeks to " + currentEndDateFlex + " weeks";
+                pre = separator;
+            }
+
+            if (overrideChanged)
+            {
+                actionLog += pre;
+                actionLog += "Stage override from" + origStageOverride + " to " + currentStageOverride;
+                pre = separator;
+            }
+
+            if (stageAuto)
+            {
+                actionLog += pre;
+                actionLog += "Stage level checking changed to automatic";
+                pre = separator;
+            }
+            else if (stageChanged)
+            {
+                actionLog += pre;
+                actionLog += "Stage level changed from" + origProjectStage + " to " + currentStageOverride;
+                pre = separator;
+            }
+
+            Global.logEventProject(Convert.ToInt32(Session["UserID"]), actionLog, Convert.ToInt32(origProjectID));
+                //dont forget to check if userid isn't null when clicking button
         }
 
         protected void EditResourcesButton_Click(object sender, EventArgs e)

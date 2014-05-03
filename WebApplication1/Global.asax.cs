@@ -142,6 +142,15 @@ namespace WebApplication1 {
             HttpContext.Current.Response.Redirect("~/Default.aspx");
             HttpContext.Current.Response.End();
         }
+
+        public static void Application_SessionExpired()
+        {
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.Redirect("~/Default.aspx");
+            HttpContext.Current.Response.Write("Session Expired!");
+            HttpContext.Current.Response.End();
+        }
+
         protected void Application_Start(object sender, EventArgs e) {
 
         }
