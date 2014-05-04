@@ -48,7 +48,7 @@
                 <td align="right" class="style2">
                     Last Name: </td>
                 <td align="left" class="style1">
-                    <input id="Text2" type="/></td>
+                    <input id="Text2" type="text"/></td>
             </tr>
             <tr>
                 <td align="right" class="style2">
@@ -95,7 +95,7 @@
             <asp:GridView ID="GridView1" runat="server" AllowPaging="True" GridLines="None" BackColor="#B3C0C4" 
                 AllowSorting="True" AutoGenerateColumns="False" BorderColor="Gray" 
                 BorderStyle="Solid" BorderWidth="1px" CellPadding="4" CellSpacing="1" 
-                DataSourceID="SqlDataProjectsResources" ForeColor="#333333" 
+                ForeColor="#333333" 
                 onselectedindexchanged="GridView1_SelectedIndexChanged">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
@@ -149,12 +149,7 @@
             </asp:GridView>
         </div>
         <br />
-        <asp:SqlDataSource ID="SqlDataProjectsResources" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:group3SQLConnection %>" 
-            
-            SelectCommand="SELECT pms_user.id AS ID, pms_user.username AS Username, pms_user.password AS Password, pms_user.first_name AS [First name], pms_user.last_name AS [Last name], pms_user.email_address AS [Email Address], pms_user_type.name AS [User Type] FROM pms_user INNER JOIN pms_user_type ON pms_user_type.id = pms_user.type_id" 
-            onselecting="SqlDataProjectsResources_Selecting">
-        </asp:SqlDataSource>
+        
         <br />
         <br />
         </div>

@@ -32,9 +32,9 @@
                             <li><a href="/Admin/AdminLog.aspx">View Admin Logs</a></li>
                             <li><a href="/Admin/ManagerLog.aspx">View Manager Logs</a></li>
                             <li style="list-style:circle outside;padding-top:10px;">Misc.</li>
-                            <li><a href="/Admin/AddCustomer.aspx">Create New Customer</a></li>
-                            <li><a href="/Admin/AddResourceRole.aspx">Create Resource Role</a></li>
-                            <li><a href="/Admin/AddResourceIndustry.aspx">Create Industry</a></li>
+                            <li><a href="/Admin/ManageCustomers.aspx">Create New Customer</a></li>
+                            <li><a href="/Admin/ManageRoles.aspx">Create Resource Role</a></li>
+                            <li><a href="/Admin/ManageIndustries.aspx">Create Industry</a></li>
                         </ul>
                     </li>
             <% } %>

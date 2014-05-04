@@ -65,6 +65,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\ManageCustomers.aspx" />
+    <Content Include="Admin\ManageIndustries.aspx" />
+    <Content Include="Admin\ManageRoles.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Manager\CreateProject.aspx" />
     <Content Include="Default.aspx" />
@@ -93,6 +96,27 @@
     <Content Include="Admin\Registration.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\ManageCustomers.aspx.cs">
+      <DependentUpon>ManageCustomers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageCustomers.aspx.designer.cs">
+      <DependentUpon>ManageCustomers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageIndustries.aspx.cs">
+      <DependentUpon>ManageIndustries.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageIndustries.aspx.designer.cs">
+      <DependentUpon>ManageIndustries.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageRoles.aspx.cs">
+      <DependentUpon>ManageRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageRoles.aspx.designer.cs">
+      <DependentUpon>ManageRoles.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
