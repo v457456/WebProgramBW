@@ -65,8 +65,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\AdminLog.aspx" />
     <Content Include="Admin\ManageCustomers.aspx" />
     <Content Include="Admin\ManageIndustries.aspx" />
+    <Content Include="Admin\ManagerLog.aspx" />
     <Content Include="Admin\ManageRoles.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Manager\CreateProject.aspx" />
@@ -96,6 +98,13 @@
     <Content Include="Admin\Registration.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AdminLog.aspx.cs">
+      <DependentUpon>AdminLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminLog.aspx.designer.cs">
+      <DependentUpon>AdminLog.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ManageCustomers.aspx.cs">
       <DependentUpon>ManageCustomers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -109,6 +118,13 @@
     </Compile>
     <Compile Include="Admin\ManageIndustries.aspx.designer.cs">
       <DependentUpon>ManageIndustries.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManagerLog.aspx.cs">
+      <DependentUpon>ManagerLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManagerLog.aspx.designer.cs">
+      <DependentUpon>ManagerLog.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ManageRoles.aspx.cs">
       <DependentUpon>ManageRoles.aspx</DependentUpon>
