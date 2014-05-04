@@ -111,7 +111,7 @@
                     &nbsp;</td>
                 <td align="right" class="style1">
         <asp:Button ID="submitButton" runat="server" Text="Add User" 
-            onclick="submitButton_Click" Width="100px" Height="25px" />
+            onclick="submitButton_Click" Width="100px" Height="25px" ValidationGroup="SubmitGroup"/>
                 </td>
             </tr>
         </table>
