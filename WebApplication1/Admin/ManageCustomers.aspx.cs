@@ -15,14 +15,11 @@ namespace WebApplication1.Admin
         {
             if (Session["UserType"] == null || Convert.ToInt32(Session["UserType"]) != Global.AdminUserType) //admin
             {
-                Response.Clear();
-                Response.Write("Access Denied!");
-                Response.StatusCode = 401;
-                Response.Redirect("~/Default.aspx");
-                Response.End();
+                Global.Application_AccessDenied(sender, e);
             }
-            else if (!IsPostBack)
+            else
             {
+                SqlDataSource1.ConnectionString = Global.getConnectionString();
             }
         }
        

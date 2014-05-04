@@ -125,7 +125,6 @@
                     <asp:SqlDataSource 
                         ID="SqlDataSource1" 
                         runat="server" 
-                        ConnectionString="<%$ ConnectionStrings:vanlocal %>"
                          ProviderName="System.Data.SqlClient" 
                         SelectCommand="SELECT [id], [name], [phone_number], [email] FROM [pms_customer] ORDER BY [name];"
                      >

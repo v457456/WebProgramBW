@@ -1,5 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="ManageIndustries.aspx.cs" Inherits="WebApplication1.Admin.ManageIndustries" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+
+        .GridViewEditRow input[type=text] {
+            width:400px
+        }
+        .GridViewEditRow {
+            width: 500px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
 
@@ -77,15 +86,15 @@
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:BoundField DataField="name" HeaderText="Industry Name" SortExpression="name">
-                        <HeaderStyle Width="200px" Height="20px" HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <HeaderStyle Width="75%" Height="20px" HorizontalAlign="Center" VerticalAlign="Middle" />
                         <ItemStyle Height="25px" HorizontalAlign="Center" VerticalAlign="Middle"  />
                     </asp:BoundField>
                     <asp:CommandField ShowEditButton="True" >
-                        <HeaderStyle Width="200px" Height="20px" HorizontalAlign="Center" VerticalAlign="Middle" CssClass="headerclear"/>
+                        <HeaderStyle Width="25%" Height="20px" HorizontalAlign="Center" VerticalAlign="Middle" CssClass="headerclear"/>
                         <ItemStyle Height="25px" HorizontalAlign="Center" VerticalAlign="Middle"  />
                     </asp:CommandField>
                 </Columns>
-                <EditRowStyle BackColor="#999999" />
+                <EditRowStyle BackColor="#999999" CssClass="GridViewEditRow"/>
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <HeaderStyle BackColor="#5D7B9D" Font-Bold="False" ForeColor="White" />
                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
@@ -99,7 +108,6 @@
               <asp:SqlDataSource 
                  ID="SqlDataSource1" 
                  runat="server" 
-                 ConnectionString="<%$ ConnectionStrings:vanlocal %>" 
                  ProviderName="System.Data.SqlClient" 
                  SelectCommand="SELECT [id], [name] FROM [pms_industry] ORDER BY [name];"
                 >
