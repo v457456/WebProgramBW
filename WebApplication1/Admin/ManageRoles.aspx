@@ -28,7 +28,7 @@
                      <td align="right" class="style2">
                          <b>Tenth Rule:</b></td>
                     <td align="left" class="style1">
-                        <input runat="server" id="TR1" type="text" size="3" />
+                        <input runat="server" id="TR1" type="text" size="3" maxlength="2" />
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TR1"
                     ErrorMessage="" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator runat="server" display="Dynamic"
@@ -37,7 +37,7 @@
                                                 validationexpression="^\d{1,2}$" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RegularExpressionValidator>
 
 
-                        <input runat="server" id="TR2" type="text" size="3" />
+                        <input runat="server" id="TR2" type="text" size="3" maxlength="2"  />
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TR2"
                     ErrorMessage="" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator runat="server" display="Dynamic"
@@ -46,7 +46,7 @@
                                                 validationexpression="^\d{1,2}$" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RegularExpressionValidator>
 
 
-                        <input runat="server" id="TR3" type="text" size="3" />
+                        <input runat="server" id="TR3" type="text" size="3" maxlength="2"  />
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TR3"
                     ErrorMessage="" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator runat="server" display="Dynamic"
@@ -54,7 +54,7 @@
                                                ErrorMessage="Each tenth rule section must be two digits in length." ToolTip="Each section must have two digits" 
                                                 validationexpression="^\d{1,2}$" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RegularExpressionValidator>
 
-                        <input runat="server" id="TR4" type="text" size="3" />
+                        <input runat="server" id="TR4" type="text" size="3" maxlength="2"  />
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TR4"
                     ErrorMessage="" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator runat="server" display="Dynamic"
@@ -62,7 +62,7 @@
                                                 ErrorMessage="Each tenth rule section must be two digits in length." ToolTip="Each section must have two digits" 
                                                 validationexpression="^\d{1,2}$" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RegularExpressionValidator>
 
-                        <input runat="server" id="TR5" type="text" size="3" />
+                        <input runat="server" id="TR5" type="text" size="3" maxlength="2"  />
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TR5"
                     ErrorMessage="" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator runat="server" display="Dynamic"
@@ -70,7 +70,7 @@
                                                 ErrorMessage="Each tenth rule section must be two digits in length." ToolTip="Each section must have two digits" 
                                                 validationexpression="^\d{1,2}$" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RegularExpressionValidator>
 
-                        <input runat="server" id="TR6" type="text" size="3" />
+                        <input runat="server" id="TR6" type="text" size="3" maxlength="2"  />
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="TR6"
                     ErrorMessage="" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator runat="server" display="Dynamic"
@@ -78,7 +78,7 @@
                                                 ErrorMessage="Each tenth rule section must be two digits in length." ToolTip="Each section must have two digits" 
                                                 validationexpression="^\d{1,2}$" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RegularExpressionValidator>
 
-                        <input runat="server" id="TR7" type="text" size="3" />
+                        <input runat="server" id="TR7" type="text" size="3" maxlength="2"  />
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TR7"
                     ErrorMessage="" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator runat="server" display="Dynamic"
@@ -86,7 +86,7 @@
                                                 ErrorMessage="Each tenth rule section must be two digits in length." ToolTip="Each section must have two digits" 
                                                 validationexpression="^\d{1,2}$" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RegularExpressionValidator>
 
-                        <input runat="server" id="TR8" type="text" size="3" />
+                        <input runat="server" id="TR8" type="text" size="3" maxlength="2"  />
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="TR8"
                     ErrorMessage="" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator runat="server" display="Dynamic"
@@ -94,7 +94,7 @@
                                                ErrorMessage="Each tenth rule section must be two digits in length." ToolTip="Each section must have two digits" 
                                                 validationexpression="^\d{1,2}$" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RegularExpressionValidator>
 
-                        <input runat="server" id="TR9" type="text" size="3" />
+                        <input runat="server" id="TR9" type="text" size="3" maxlength="2"  />
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="TR9"
                     ErrorMessage="" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator runat="server" display="Dynamic"
@@ -102,7 +102,7 @@
                                                 ErrorMessage="Each tenth rule section must be two digits in length." ToolTip="Each section must have two digits" 
                                                 validationexpression="^\d{1,2}$" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RegularExpressionValidator>
 
-                        <input runat="server" id="TR10" type="text" size="3" />
+                        <input runat="server" id="TR10" type="text" size="3" maxlength="2"  />
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="TR10"
                     ErrorMessage="*" ValidationGroup="SubmitGroup"><b style="color:red">*</b></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator runat="server" display="Dynamic"
@@ -198,7 +198,7 @@
              <asp:SqlDataSource 
                  ID="SqlDataSource1" 
                  runat="server" 
-                 ConnectionString="Data Source=RYANW7\PEGASUS;Initial Catalog=group3;Persist Security Info=True;User ID=ryan;Password=password;MultipleActiveResultSets=True" 
+                 ConnectionString="<%$ ConnectionStrings:vanlocal %>" 
                  ProviderName="System.Data.SqlClient" 
                  SelectCommand="SELECT [id], [name], [default_tenth_rule] FROM [pms_resource_role] ORDER BY [name];"
                 >

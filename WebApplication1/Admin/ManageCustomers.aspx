@@ -125,7 +125,7 @@
                     <asp:SqlDataSource 
                         ID="SqlDataSource1" 
                         runat="server" 
-                        ConnectionString="Data Source=RYANW7\PEGASUS;Initial Catalog=group3;Persist Security Info=True;User ID=ryan;Password=password;MultipleActiveResultSets=True" 
+                        ConnectionString="<%$ ConnectionStrings:vanlocal %>"
                          ProviderName="System.Data.SqlClient" 
                         SelectCommand="SELECT [id], [name], [phone_number], [email] FROM [pms_customer] ORDER BY [name];"
                      >
