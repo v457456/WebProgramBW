@@ -34,7 +34,7 @@ namespace WebApplication1
                 }
                 fillProjectsDropDown();
             }
-            else
+            else if (Request.QueryString["ProjectID"] != null)
             {
                 origProjectID = ViewState["origProjectID"].ToString();
                 origManagerID = ViewState["origManagerID"].ToString();
@@ -97,6 +97,7 @@ namespace WebApplication1
             Projectname.Value = result["name"].ToString();
             DropDownList4.Items.FindByValue(result["customer_id"].ToString()).Selected = true;
             DropDownList5.Items.FindByValue(result["industry_id"].ToString()).Selected = true;
+            if (Global.isAdmin()) DropDownList8.Items.FindByValue(result["manager_id"].ToString()).Selected = true;
             //DateTime parsedDate;
             //DateTime.TryParse(result["start_date"].ToString(), null, System.Globalization.DateTimeStyles.None, out parsedDate);
             //Text1.Value = parsedDate.ToString("MM/dd/yyyy");
@@ -241,6 +242,7 @@ namespace WebApplication1
         }
         private void LoadGrid(string sortExpr, string sortDirection)
         {
+            ViewState["SortExpression"] = sortExpr;
             ViewState["sortDirectionStr"] = sortDirection;
             if (Request.QueryString["ProjectID"] != null)
             {
@@ -401,7 +403,7 @@ namespace WebApplication1
                         {
                             cmd.CommandText += pre;
                             cmd.CommandText += "manager_id=@managerid";
-                            cmd.Parameters.Add("@manager_id", SqlDbType.Int).Value = currentManagerID;
+                            cmd.Parameters.Add("@managerid", SqlDbType.Int).Value = currentManagerID;
                             pre = ", ";
                         }
                         if (check_ProjectName.Checked)
@@ -456,35 +458,40 @@ namespace WebApplication1
                         if (useAuto)
                         {
                             cmd.CommandText += pre;
-                            cmd.CommandText += "currentStageOverride=NULL";
+                            cmd.CommandText += "current_stage_override=NULL";
                         }
                         else if (changedStage)
                         {
                             cmd.CommandText += pre;
-                            cmd.CommandText += "currentStageOverride=@curstage";
+                            cmd.CommandText += "current_stage_override=@curstage";
+                            cmd.Parameters.Add("@curstage", SqlDbType.Int).Value = currentProjectStage;
+                        }
+                        else if (changedOverride)
+                        {
+                            cmd.CommandText += pre;
+                            cmd.CommandText += "current_stage_override=@curstage";
                             cmd.Parameters.Add("@curstage", SqlDbType.Int).Value = currentProjectStage;
                         }
                         cmd.CommandText += " WHERE id=@projid";
                         cmd.Parameters.Add("@projid", SqlDbType.Int).Value = currentProjectID;
-                        cmd.CommandText += ";";
-                        // SqlCommand cmd = new SqlCommand("SELECT pms_resource.experience_level as [Experience_Level], pms_resource_role.name AS [Role], pms_resource.last_name + ', ' + pms_resource.first_name AS [Name], pms_resource.email_address AS [Email_Address] FROM "
-                        // + "pms_resourceproject INNER JOIN pms_resource ON pms_resource.id = pms_resourceproject.resource_id INNER JOIN pms_resource_role ON pms_resource_role.id = pms_resource.role_id WHERE pms_resourceproject.project_id = @projid ORDER BY " + sortExpr + " " + sortDirection + ";", con);
-
                         cmd.CommandText += ";";
                         try
                         {
                             con.Open();
                             cmd.ExecuteNonQuery();
                         }
-                        catch { }
+                        catch (Exception ex)
+                        {
+                            throw (ex);
+                        }
                         finally
                         {
                             con.Close();
                         }
-                        
-                    }
 
-                    logChanges(check_Manager.Checked, check_ProjectName.Checked, check_Customer.Checked, check_Industry.Checked, check_StartDate.Checked, check_EndDate.Checked, check_StartDateFlex.Checked, check_EndDateFlex.Checked, changedOverride, changedStage, useAuto);
+                        logChanges(check_Manager.Checked, check_ProjectName.Checked, check_Customer.Checked, check_Industry.Checked, check_StartDate.Checked, check_EndDate.Checked, check_StartDateFlex.Checked, check_EndDateFlex.Checked, changedOverride, changedStage, useAuto);
+                        Response.Redirect("~/Manager/EditProject.aspx?ProjectID=" + Request.QueryString["ProjectID"]);
+                    }
                 }
             }
         }
@@ -501,7 +508,7 @@ namespace WebApplication1
                 currentStartDateFlex = Text3.Value,
                 currentEndDateFlex = Text4.Value,
                 currentProjectStage = DropDownList9.SelectedValue;
-            bool currentStageOverride = check_StartDateFlex.Checked;
+            bool currentStageOverride = check_StageOverride.Checked;
 
             string actionLog = "Changed";
             string pre = " ";
@@ -509,30 +516,54 @@ namespace WebApplication1
 
             if (managerChanged)
             {
-                actionLog += pre;
-                actionLog += "ManagerID from" + origManagerID + " to " + currentManagerID;
-                pre = separator;
+                
+                try
+                {
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand("SELECT first_name + ' ' + last_name AS [name] FROM pms_user WHERE pms_user.id = @id;", con);
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = origManagerID; 
+                    string origmanagerName = (string)cmd.ExecuteScalar();
+                    cmd.Dispose();
+                    cmd = new SqlCommand("SELECT first_name + ' ' + last_name AS [name] FROM pms_user WHERE pms_user.id = @id;", con);
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = currentManagerID;
+                    string currentmanagerName = (string)cmd.ExecuteScalar();
+                    actionLog += pre;
+                    actionLog += "Manager from \"" + origmanagerName + "\" to \"" + currentmanagerName + "\"";
+                    pre = separator;
+                }
+                catch (Exception ex)
+                {
+                    throw (ex);
+                }
+                finally
+                {
+                    con.Close();
+                }
             }
 
             if (nameChanged)
             {
                 actionLog += pre;
-                actionLog += "Project Name from" + origProjectName + " to " + currentProjectName;
+                actionLog += "Project Name from \"" + origProjectName + "\" to \"" + currentProjectName + "\"";
                 pre = separator;
             }
 
             if (customerChanged)
             {
-                SqlCommand cmd = new SqlCommand("SELECT name FROM pms_customer WHERE pms_customer.id = @custid;", con);
-                cmd.Parameters.Add("@custid", SqlDbType.Int).Value = origCustomerID;
+                
                 try
                 {
                     con.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT name FROM pms_customer WHERE pms_customer.id = @custid;", con);
+                    cmd.Parameters.Add("@custid", SqlDbType.Int).Value = origCustomerID;
                     string origcustomerName = (string)cmd.ExecuteScalar();
+                    cmd.Dispose();
+                    cmd = new SqlCommand("SELECT name FROM pms_customer WHERE pms_customer.id = @custid;", con);
                     cmd.Parameters.Add("@custid", SqlDbType.Int).Value = currentCustomerID;
                     string currentcustomerName = (string)cmd.ExecuteScalar();
                     actionLog += pre;
-                    actionLog += "Customer from" + origcustomerName + " to " + currentcustomerName;
+                    actionLog += "Customer from \"" + origcustomerName + "\" to \"" + currentcustomerName + "\"";
                     pre = separator;
                 }
                 catch { }
@@ -544,16 +575,19 @@ namespace WebApplication1
 
             if (industryChanged)
             {
-                SqlCommand cmd = new SqlCommand("SELECT name FROM pms_industry WHERE pms_industry.id = @industid;", con);
-                cmd.Parameters.Add("@industid", SqlDbType.Int).Value = origIndustryID;
+                
                 try
                 {
                     con.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT name FROM pms_industry WHERE pms_industry.id = @industid;", con);
+                    cmd.Parameters.Add("@industid", SqlDbType.Int).Value = origIndustryID;
                     string origindustryName = (string)cmd.ExecuteScalar();
+                    cmd.Dispose();
+                    cmd = new SqlCommand("SELECT name FROM pms_industry WHERE pms_industry.id = @industid;", con);
                     cmd.Parameters.Add("@industid", SqlDbType.Int).Value = currentIndustryID;
                     string currentindustryName = (string)cmd.ExecuteScalar();
                     actionLog += pre;
-                    actionLog += "Industry from" + origindustryName + " to " + currentindustryName;
+                    actionLog += "Industry from \"" + origindustryName + "\" to \"" + currentindustryName + "\"";
                     pre = separator;
                 }
                 catch { }
@@ -566,39 +600,39 @@ namespace WebApplication1
             if (startdateChanged)
             {
                 actionLog += pre;
-                actionLog += "Start date from" + origStartDate + " to " + currentStartDate;
+                actionLog += "Start date from \"" + origStartDate + "\" to " + currentStartDate + "\"";
                 pre = separator;
             }
 
             if (enddateChanged)
             {
                 actionLog += pre;
-                actionLog += "End date from" + origEndDate + " to " + currentEndDate;
+                actionLog += "End date from \"" + origEndDate + "\" to \"" + currentEndDate + "\"";
                 pre = separator;
             }
 
             if (startdateflexChanged)
             {
                 actionLog += pre;
-                actionLog += "Start date flexibility from" + origStartDateFlex + "weeks to " + currentStartDateFlex + " weeks";
+                actionLog += "Start date flexibility from \"" + origStartDateFlex + "\" weeks to \"" + currentStartDateFlex + "\" weeks";
                 pre = separator;
             }
 
             if (enddateflexChanged)
             {
                 actionLog += pre;
-                actionLog += "End date flexibility from" + origEndDateFlex + "weeks to " + currentEndDateFlex + " weeks";
+                actionLog += "End date flexibility from \"" + origEndDateFlex + "\" weeks to \"" + currentEndDateFlex + "\" weeks";
                 pre = separator;
             }
 
             if (overrideChanged)
             {
                 actionLog += pre;
-                actionLog += "Stage override from" + origStageOverride + " to " + currentStageOverride;
+                actionLog += "Stage override from \"" + origStageOverride + "\" to \"" + currentStageOverride + "\"";
                 pre = separator;
             }
 
-            if (stageAuto)
+            if (origStageOverride && stageAuto)
             {
                 actionLog += pre;
                 actionLog += "Stage level checking changed to automatic";
@@ -607,7 +641,7 @@ namespace WebApplication1
             else if (stageChanged)
             {
                 actionLog += pre;
-                actionLog += "Stage level changed from" + origProjectStage + " to " + currentStageOverride;
+                actionLog += "Stage level changed from \"" + origProjectStage + "\" to \"" + currentProjectStage + "\"";
                 pre = separator;
             }
 

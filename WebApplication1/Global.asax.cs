@@ -58,7 +58,7 @@ namespace WebApplication1 {
                 cmd = new SqlCommand("INSERT INTO pms_log_user (date_time, copy_userid, copy_username, copy_userfirstname, copy_userlastname, copy_useridaffected, description) VALUES "
                                                                 + "(@time, @userid, @username, @userfirstname, @userlastname, @useridaffected, @description);", con);
 
-                cmd.Parameters.Add("@time", SqlDbType.DateTime).Value = DateTime.Today;
+                cmd.Parameters.Add("@time", SqlDbType.DateTime).Value = DateTime.Now;
                 cmd.Parameters.Add("@userid", SqlDbType.Int).Value = UserID;
                 cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = username;
                 cmd.Parameters.Add("@userfirstname", SqlDbType.VarChar).Value = firstname;
@@ -114,7 +114,7 @@ namespace WebApplication1 {
                 + "copy_userlastname, copy_projectid, copy_projectname, description) VALUES "
                 + "(@time, @userid, @username, @userfirstname, @userlastname, @projectid, @projectname, @description);", con);
 
-                cmd.Parameters.Add("@time", SqlDbType.DateTime).Value = DateTime.Today;
+                cmd.Parameters.Add("@time", SqlDbType.DateTime).Value = DateTime.Now;
                 cmd.Parameters.Add("@userid", SqlDbType.Int).Value = UserID;
                 cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = username;
                 cmd.Parameters.Add("@userfirstname", SqlDbType.VarChar).Value = firstname;

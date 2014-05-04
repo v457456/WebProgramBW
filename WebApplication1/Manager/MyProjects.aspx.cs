@@ -21,26 +21,26 @@ namespace WebApplication1
             else if (!IsPostBack)
             {
                 LoadGrid("ID", "ASC");
-                ViewState["SortExpression"] = "ID";
+                
             }
         }
 
         private void LoadGrid(string sortExpr, string sortDirection) {
             ViewState["sortDirectionStr"] = sortDirection;
-
+            ViewState["SortExpression"] = sortExpr;
             SqlConnection con = new SqlConnection(Global.getConnectionString());
 
-            string filterProjectsByManagerID = " ";
-            SqlCommand cmd = new SqlCommand("SELECT pms_project.id AS ID, pms_project.name AS Name, pms_project.start_date AS [Start Date], pms_project.end_date AS [End Date], pms_customer.name AS Customer, pms_industry.name AS Industry, pms_user.username AS Manager FROM pms_project INNER JOIN pms_customer ON pms_customer.id = pms_project.customer_id INNER JOIN pms_industry ON pms_industry.id = pms_project.industry_id INNER JOIN pms_user ON pms_user.id = pms_project.manager_id" + filterProjectsByManagerID + "ORDER BY " + sortExpr + " " + sortDirection + ";", con);
-            if (Convert.ToInt32(Session["UserType"]) == Global.AdminUserType) //manager column hidden if manager, visible if admin
+            SqlCommand cmd = new SqlCommand("SELECT pms_project.id AS ID, pms_project.name AS Name, pms_project.start_date AS [Start Date], pms_project.end_date AS [End Date], pms_customer.name AS Customer, pms_industry.name AS Industry, pms_user.username AS Manager FROM pms_project INNER JOIN pms_customer ON pms_customer.id = pms_project.customer_id INNER JOIN pms_industry ON pms_industry.id = pms_project.industry_id INNER JOIN pms_user ON pms_user.id = pms_project.manager_id", con);
+            if (Global.isAdmin()) //manager column hidden if manager, visible if admin
             {
+                cmd.CommandText += " ORDER BY " + sortExpr + " " + sortDirection + ";";
                 GridView1.Columns[6].Visible = true;
             }
             else 
             {
                 GridView1.Columns[6].Visible = false;
-                filterProjectsByManagerID = "WHERE pms_project.manager_id = @userid";
-                cmd.Parameters.Add("@userid", SqlDbType.VarChar).Value = Session["UserID"].ToString();
+                cmd.CommandText += " WHERE pms_project.manager_id = @userid ORDER BY " + sortExpr + " " + sortDirection + ";";
+                cmd.Parameters.Add("@userid", SqlDbType.Int).Value = Convert.ToInt32(Session["UserID"]);
             }
 
             try

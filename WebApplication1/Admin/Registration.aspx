@@ -24,8 +24,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
     <div>
-        <hr style="width:75%; margin-left:auto; margin-right:auto"/>
-        <br />
         <h1 align="center">New User Registration</h1>
         <br />
         Please fill in all fields and click &#39;Add 

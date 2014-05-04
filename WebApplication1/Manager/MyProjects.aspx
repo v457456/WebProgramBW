@@ -8,8 +8,6 @@
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
-    <hr style="width:75%; margin-left:auto; margin-right:auto"/>
-        <br />
         <h1 align="center">Your Projects</h1>
         <br />
         Listed below are the projects you are currently managing.<br />

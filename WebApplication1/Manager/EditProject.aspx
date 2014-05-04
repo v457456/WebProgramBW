@@ -91,7 +91,7 @@
     <p style="text-align: left; margin-left: 110px;">
         &nbsp;
     </p>
-    <h2 style="text-align: left; margin-left: 110px;">Project Attributes<asp:Button ID="UpdateButton" runat="server" Text="Save Attributes" ClientIDMode="Static" OnClick="UpdateButton_Click" Height="26px" Width="132px" />
+    <h2 style="text-align: left; margin-left: 110px;">Project Attributes<asp:Button ID="UpdateButton" runat="server" Text="Save Attributes" ClientIDMode="Static" OnClick="UpdateButton_Click" OnClientClick="readyForSend()" Height="26px" Width="132px" />
     </h2>
     <hr style="width: 95%; margin-top: 5px; margin-left: auto; margin-right: auto" />
     &nbsp;<table style="width: 700px; margin: 0 auto 0 auto;">
@@ -103,8 +103,7 @@
             <td align="left" class="style18">
                 <asp:DropDownList ID="DropDownList8" runat="server" Height="20px" Width="250px"
                     DataTextField="ProjectSelect"
-                    AppendDataBoundItems="true"
-                    OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged">
+                    AppendDataBoundItems="true">
                 </asp:DropDownList>
             </td>
             <td align="right" class="style19">
@@ -389,5 +388,20 @@
     <script type="text/javascript">
         $("#<%=Text1.ClientID%>").datepicker();
         $("#<%=Text5.ClientID%>").datepicker();
+    </script>
+    <script type="text/javascript">
+        function readyForSend() {
+            <% if (global_asax.isAdmin()) { %>
+                $("#<%=check_Manager.ClientID%>").prop("disabled", false);
+            <% } %>
+
+            $("#<%=check_ProjectName.ClientID%>").prop("disabled", false);
+            $("#<%=check_Customer.ClientID%>").prop("disabled", false);
+            $("#<%=check_Industry.ClientID%>").prop("disabled", false);
+            $("#<%=check_StartDate.ClientID%>").prop("disabled", false);
+            $("#<%=check_StartDateFlex.ClientID%>").prop("disabled", false);
+            $("#<%=check_EndDate.ClientID%>").prop("disabled", false);
+            $("#<%=check_EndDateFlex.ClientID%>").prop("disabled", false);
+        }
     </script>
 </asp:Content>

@@ -14,7 +14,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" SubmitDisabledControls="True">
     <div class="wrapper">
     <div id="bodyContainer1">
         <div id="mainHeader">
