@@ -64,7 +64,7 @@ namespace WebApplication1
         private void LoadGrid(string sortExpr, string sortDirection)
         {
             ViewState["sortDirectionStr"] = sortDirection;
-
+            ViewState["SortExpression"] = sortExpr;
             SqlConnection con = new SqlConnection(Global.getConnectionString());
             SqlCommand cmd = new SqlCommand("", con);
             String pC = " WHERE ";

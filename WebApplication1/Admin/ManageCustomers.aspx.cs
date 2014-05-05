@@ -30,6 +30,8 @@ namespace WebApplication1.Admin
             String cPhone = CustomerPhone.Value.ToString();
             String cEmail = CustomerEmail.Value.ToString();
 
+            
+
             SqlConnection con = new SqlConnection(Global.getConnectionString());
             SqlCommand cmd = new SqlCommand("INSERT INTO pms_customer (name,phone_number,email) VALUES "+ "(@name, @phone, @email);", con);
 
@@ -66,6 +68,7 @@ namespace WebApplication1.Admin
             string cEmail = ((TextBox)(row.Cells[2].Controls[0])).Text;
 
             if (cName == "") Response.Redirect("~/Admin/ManageCustomers.aspx");
+            if (cPhone.Length > 10) { Response.Redirect("~/Admin/ManageCustomers.aspx"); }
          
 
                 SqlConnection con = new SqlConnection(Global.getConnectionString());
