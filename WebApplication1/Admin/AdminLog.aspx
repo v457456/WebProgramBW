@@ -7,7 +7,7 @@
                     AllowSorting="True" AutoGenerateColumns="False" BorderColor="Gray" 
                     BorderStyle="Solid" BorderWidth="1px" CellPadding="4" CellSpacing="1" 
                     ForeColor="#333333" 
-                    DataSourceID="SqlDataSource1" style="text-align: center">
+                    DataSourceID="SqlDataSource1" style="text-align: center" Width="100%">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:BoundField DataField="date_time" HeaderText="Date" SortExpression="date_time"></asp:BoundField>
@@ -36,5 +36,5 @@
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
     </div>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:vanlocal %>" SelectCommand="SELECT [date_time], [copy_userid], [copy_username], [copy_userfirstname], [copy_userlastname], [copy_useridaffected], [description] FROM [pms_log_user]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT [date_time], [copy_userid], [copy_username], [copy_userfirstname], [copy_userlastname], [copy_useridaffected], [description] FROM [pms_log_user]"></asp:SqlDataSource>
 </asp:Content>
