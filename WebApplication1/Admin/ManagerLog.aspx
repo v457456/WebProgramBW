@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:vanlocal %>" SelectCommand="SELECT [date_time], [copy_userid], [copy_username], [copy_userfirstname], [copy_userlastname], [copy_projectid], [copy_projectname], [description] FROM [pms_log_project]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT [date_time], [copy_userid], [copy_username], [copy_userfirstname], [copy_userlastname], [copy_projectid], [copy_projectname], [description] FROM [pms_log_project]"></asp:SqlDataSource>
 
     <div align="center">
         <asp:GridView ID="GridView1" runat="server" AllowPaging="True" GridLines="None" BackColor="#B3C0C4" 

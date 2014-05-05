@@ -214,5 +214,7 @@ namespace WebApplication1
             string redirstr = "~/Manager/EditProjectResources.aspx?ProjectID=" + projectID.ToString();
             Response.Redirect(redirstr);
         }
+
+        
     }
 }

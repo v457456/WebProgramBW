@@ -6,9 +6,8 @@
 <head runat="server">
     <title>Hyland PMS</title>
     <link rel="stylesheet" href="/Styles/style2.css"/>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
+    <script type="text/javascript" src="/Scripts/jquery2.1.0min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery-ui.js"></script>
     <script type="text/javascript" src="/Scripts/dropdown.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -46,7 +45,7 @@
                             <li><a href="/Manager/EditProject.aspx">Edit Project</a></li>
                             <li style="list-style:circle outside;padding-top:10px;">Resources</li>
                             <li><a href="/Manager/ResourceRegistration.aspx">Create Resource</a></li>
-                            <li><a href="/Manager/SearchResource.aspx">Edit Resource</a></li>
+                            <li><a href="/Manager/SearchResource.aspx">Search for Resource</a></li>
                         </ul>
                     </li>
                     <li class="topMenu" style="float:right">

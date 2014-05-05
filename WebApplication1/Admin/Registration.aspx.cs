@@ -22,6 +22,7 @@ namespace WebApplication1
             {
 
             }
+            Text1.Focus();
         }
 
         protected void submitButton_Click(object sender, EventArgs e)

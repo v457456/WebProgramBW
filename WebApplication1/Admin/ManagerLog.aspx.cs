@@ -11,7 +11,14 @@ namespace WebApplication1.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UserType"] == null || Convert.ToInt32(Session["UserType"]) != Global.AdminUserType) //admin
+            {
+                Global.Application_AccessDenied(sender, e);
+            }
+            else
+            {
+                SqlDataSource1.ConnectionString = Global.getConnectionString();
+            }
         }
     }
 }

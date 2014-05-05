@@ -218,9 +218,11 @@
         <div style="float: right;">
         </div>
     </div>
-    <h2 style="text-align: left; margin-left: 110px;">Project Resources
-        <asp:Button ID="EditResourcesButton" runat="server" Text="Add/Edit Resources" Height="40px" Width="176px" ClientIDMode="Static" OnClick="EditResourcesButton_Click" />
-    </h2>
+    <h2 style="text-align: left;margin-left:50px;padding-top:10px;float:left;display:inline;">Project Resources</h2>
+    <div style="display:inline;text-align:right;float:right;margin-right:40px;margin-bottom:5px;">
+        <asp:Button ID="RedirectToSearchResources" runat="server" Text="Add Resources" Height="40px" Width="176px" OnClick="RedirectToSearchResources_Click" />
+        <asp:Button ID="EditResourcesButton" runat="server" Text="Remove Resources" Height="40px" Width="176px" OnClick="EditResourcesButton_Click" />
+    </div>
     <hr style="width: 95%; margin-top: 5px; margin-left: auto; margin-right: auto" />
     <br />
     <div style="margin: 0 auto 0 auto; width: 613px">

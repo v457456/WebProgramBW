@@ -83,6 +83,9 @@
     <Content Include="Scripts\dropdown.js" />
     <Content Include="Manager\SearchResource.aspx" />
     <Content Include="Admin\SearchUser.aspx" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.formance.min.js" />
+    <Content Include="Scripts\jquery2.1.0min.js" />
     <Content Include="Styles\Site.css" />
     <Content Include="Styles\style2.css" />
     <Content Include="Web.config">

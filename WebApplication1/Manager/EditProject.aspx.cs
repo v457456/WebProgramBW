@@ -190,6 +190,7 @@ namespace WebApplication1
                 Text5.Disabled = !active;
                 EditResourcesButton.Enabled = active;
                 UpdateButton.Enabled = active;
+                RedirectToSearchResources.Enabled = active;
 
 
             /*
@@ -652,6 +653,13 @@ namespace WebApplication1
         protected void EditResourcesButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Manager/EditProjectResources.aspx?ProjectID=" + Request.QueryString["ProjectID"]);
+        }
+
+        protected void RedirectToSearchResources_Click(object sender, EventArgs e)
+        {
+            int projectID = Convert.ToInt32(Request.QueryString["ProjectID"]);
+            string redirstr = "~/Manager/SearchResource.aspx?ProjectID=" + projectID.ToString();
+            Response.Redirect(redirstr);
         }
     }
 }

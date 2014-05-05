@@ -21,13 +21,8 @@
         #addslide a:hover {color:#464646;} 
         #addslide a:active, a:visited, a:link {color:#000000;}
     </style>
-    <script type="text/javascript">
-        //$(document).ready(function () {
-        //    $("#removeres").stop(true, true).slideUp(1);
-        //    $("#addres").stop(true, true).slideUp(1);
-        //});
+   <%-- <script type="text/javascript">
         var remup = false;
-        var addup = false;
         $(function () {
             $("#removeslide").click(function () {
                 $("#removeres").stop(true,true).slideToggle();
@@ -43,21 +38,8 @@
                     $("#removeslidedirection").html("&#9660;");
                 }
             });
-            $("#addslide").click(function () {
-                $("#addres").stop(true, true).slideToggle();
-                if (addup) {
-                    addup = false;
-                } else {
-                    addup = true;
-                }
-                if (addup) {
-                    $("#addslidedirection").html("&#9658;");
-                } else {
-                    $("#addslidedirection").html("&#9660;");
-                }
-            });
         })
-    </script>
+    </script>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
     <h1 align="center">Manage Project Resources</h1>
@@ -67,7 +49,7 @@
     <br />
     <br />
     <div id="accordian" runat="server">
-        <h1 id="removeslide" style="text-align:left;margin-left:50px;"><span id="removeslidedirection" style="font-size:16px;vertical-align:middle;padding:0 10px 0 0;margin:0;display:inline">&#9660;</span><a href="#">Remove Resources</a></h1>
+        <h1 id="removeslide" style="text-align:left;margin-left:50px;">Remove Resources</h1>
         <div id="removeres" style="margin: 5px auto 0 auto">
             <hr style="margin-bottom:5px"/>
             <div style="margin: 5px auto 25px auto;width: 643px">
@@ -125,14 +107,6 @@
             </asp:GridView>
                     <div style="text-align:right;margin-top:5px;"><asp:Button ID="RemoveSelectedButton" runat="server" OnClick="RemoveSelectedButton_Click" Text="Remove Selected" Height="30px" Width="135px" /></div>
 
-                </div>
-        </div>
-
-        <h1 id="addslide" style="text-align:left;margin-left:50px;"><span id="addslidedirection" style="font-size:16px;vertical-align:middle;padding:0 10px 0 0;margin:0;display:inline">&#9660;</span><a href="#">Add Resources</a></h1>
-        <div id="addres" style="margin: 5px auto 0 auto">
-            <hr style="margin-bottom:5px"/>
-            <div style="margin: 5px auto 25px auto;width: 643px">
-            Big data stuff search
                 </div>
         </div>
     </div>

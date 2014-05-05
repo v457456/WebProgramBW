@@ -21,6 +21,7 @@ namespace WebApplication1.Admin
             {
                 SqlDataSource1.ConnectionString = Global.getConnectionString();
             }
+            IndustryName.Focus();
         }
         protected void submitButton_Click(object sender, EventArgs e)
         {
