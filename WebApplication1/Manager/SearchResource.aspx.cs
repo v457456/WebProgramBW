@@ -295,6 +295,7 @@ namespace WebApplication1
             if (sortExpr == "[id]") sortingbyID = true;
             ViewState["sortDirectionStr"] = sortDirection;
             int[] hrsweeks = new int[10];
+            ViewState["SortExpression"] = sortExpr;
             if (Request.QueryString["ProjectID"] != null) {
                 hrsweeks = getHrsWeeks();
             }
@@ -401,6 +402,7 @@ namespace WebApplication1
             try
             {
                 con.Open();
+
                 DataTable dt = new DataTable();
                 SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
                 sqlDa.Fill(dt);

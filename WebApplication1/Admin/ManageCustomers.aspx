@@ -22,14 +22,16 @@
                              <td width="50%" align="left" class="style1" ID="CustomerCell" runat="server">
                                 <input runat="server" id="CustomerName" type="text" size="40" />
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="CustomerName"
-                                    ErrorMessage="Customer name required!" ValidationGroup="SubmitGroup"></asp:RequiredFieldValidator>
+                                    ErrorMessage="Customer name required!" ForeColor="Red"  ValidationGroup="SubmitGroup"></asp:RequiredFieldValidator>
+                                  
                             </td>
                         </tr>
                         <tr>
                             <td align="right" class="style2">
                                <b>Customer Phone Number:</b></td>
                             <td align="left" class="style1" ID="Td1" runat="server">
-                                <input runat="server" id="CustomerPhone" type="text" size="20" />
+                                <input runat="server" id="CustomerPhone" type="text" size="20" maxlength="10" />
+                                
                             </td>
                         </tr>
                         <tr>
@@ -70,7 +72,8 @@
      
             
               
-                    <asp:GridView ID="CustomerGridView" 
+                    <asp:GridView 
+                        ID="CustomerGridView" 
                      runat="server" 
                         AllowPaging="True" 
                         GridLines="None" 
