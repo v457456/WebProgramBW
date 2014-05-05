@@ -18,9 +18,9 @@ namespace WebApplication1
             {
                 Global.Application_AccessDenied(sender, e);
             }
-            else if (!IsPostBack)
+            else
             {
-
+                SqlDataSource1.ConnectionString = Global.getConnectionString();
             }
         }
 
@@ -69,9 +69,8 @@ namespace WebApplication1
                     con.Close();
                 }
                 
-
-                
             }
         }
+
     }
 }
