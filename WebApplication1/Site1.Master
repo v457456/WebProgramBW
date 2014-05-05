@@ -26,14 +26,14 @@
                         <ul class="menu_body">
                             <li style="list-style:circle outside;padding-top:10px;">Users</li>
                             <li><a href="/Admin/Registration.aspx">Create a User</a></li>
-                            <li><a href="/Admin/SearchUser.aspx">Edit a User</a></li>
+                            <li><a href="/Admin/SearchUser.aspx">Manage Users</a></li>
                             <li style="list-style:circle outside;padding-top:10px;">Logs</li>
                             <li><a href="/Admin/AdminLog.aspx">View Admin Logs</a></li>
                             <li><a href="/Admin/ManagerLog.aspx">View Manager Logs</a></li>
                             <li style="list-style:circle outside;padding-top:10px;">Misc.</li>
-                            <li><a href="/Admin/ManageCustomers.aspx">Create New Customer</a></li>
-                            <li><a href="/Admin/ManageRoles.aspx">Create Resource Role</a></li>
-                            <li><a href="/Admin/ManageIndustries.aspx">Create Industry</a></li>
+                            <li><a href="/Admin/ManageCustomers.aspx">Manage Customers</a></li>
+                            <li><a href="/Admin/ManageRoles.aspx">Manage Resource Roles</a></li>
+                            <li><a href="/Admin/ManageIndustries.aspx">Manage Industries</a></li>
                         </ul>
                     </li>
             <% } %>
@@ -45,6 +45,7 @@
                             <li><a href="/Manager/EditProject.aspx">Edit Project</a></li>
                             <li style="list-style:circle outside;padding-top:10px;">Resources</li>
                             <li><a href="/Manager/ResourceRegistration.aspx">Create Resource</a></li>
+                            <li><a href="/Manager/EditResource.aspx">Manage Resources</a></li>
                             <li><a href="/Manager/SearchResource.aspx">Search for Resource</a></li>
                         </ul>
                     </li>

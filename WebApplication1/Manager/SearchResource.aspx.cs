@@ -254,6 +254,9 @@ namespace WebApplication1
                         }
                         rank -= (data.Rows.Count * rand2.Next(3, 5));
                     }
+                    else {
+                        rank = 10000;
+                    }
                     row["Rank"] = rank;
                 }
                 catch {

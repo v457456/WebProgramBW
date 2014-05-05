@@ -77,6 +77,7 @@
     <Content Include="Images\bg.png" />
     <Content Include="Images\loginlogo.png" />
     <Content Include="Manager\EditProjectResources.aspx" />
+    <Content Include="Manager\EditResource.aspx" />
     <Content Include="Manager\MyProjects.aspx" />
     <Content Include="Manager\ResourceRegistration.aspx" />
     <Content Include="Manager\ScheduleResourcesForm.aspx" />
@@ -166,6 +167,13 @@
     </Compile>
     <Compile Include="Manager\EditProjectResources.aspx.designer.cs">
       <DependentUpon>EditProjectResources.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager\EditResource.aspx.cs">
+      <DependentUpon>EditResource.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager\EditResource.aspx.designer.cs">
+      <DependentUpon>EditResource.aspx</DependentUpon>
     </Compile>
     <Compile Include="Manager\MyProjects.aspx.cs">
       <DependentUpon>MyProjects.aspx</DependentUpon>

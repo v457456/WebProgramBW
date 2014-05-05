@@ -33,7 +33,7 @@ namespace WebApplication1
             SqlConnection con = new SqlConnection(Global.getConnectionString());
             SqlCommand cmd = new SqlCommand("", con);
             String pC = " WHERE ";
-            cmd.CommandText = "SELECT pms_user.id, username AS [Username], first_name AS [First_Name], last_name AS [Last_Name], email_address AS [Email_Address], pms_user_type.name AS [User_Type] FROM pms_user INNER JOIN pms_user_type ON pms_user_type.id=pms_user.type_id";
+            cmd.CommandText = "SELECT pms_user.id, username AS [Username], password AS [Password], first_name AS [First_Name], last_name AS [Last_Name], email_address AS [Email_Address], pms_user_type.name AS [User_Type] FROM pms_user INNER JOIN pms_user_type ON pms_user_type.id=pms_user.type_id";
 
 
             String firstname = FirstName.Value.ToString();
@@ -177,13 +177,14 @@ namespace WebApplication1
 
             GridViewRow row = GridView1.Rows[e.RowIndex];
             string uUsername = ((TextBox)(row.Cells[0].Controls[0])).Text;
-            string uFirstName = ((TextBox)(row.Cells[1].Controls[0])).Text;
-            string uLastName = ((TextBox)(row.Cells[2].Controls[0])).Text;
-            string uEmail = ((TextBox)(row.Cells[3].Controls[0])).Text;
-            string uType = ((TextBox)(row.Cells[4].Controls[0])).Text;
+            string uPass = ((TextBox)(row.Cells[1].Controls[0])).Text;
+            string uFirstName = ((TextBox)(row.Cells[2].Controls[0])).Text;
+            string uLastName = ((TextBox)(row.Cells[3].Controls[0])).Text;
+            string uEmail = ((TextBox)(row.Cells[4].Controls[0])).Text;
+            string uType = ((TextBox)(row.Cells[5].Controls[0])).Text;
 
 
-            if (uUsername == "" || uFirstName == "" || uLastName == "" || uEmail == "" || uType == "")
+            if (uPass==""||uUsername == "" || uFirstName == "" || uLastName == "" || uEmail == "" || uType == "")
             {
                 LoadGrid("[Last_Name]", "ASC");
                 GridView1.EditIndex = -1;
@@ -193,9 +194,10 @@ namespace WebApplication1
             {
 
                 SqlConnection con = new SqlConnection(Global.getConnectionString());
-                SqlCommand cmd = new SqlCommand("UPDATE pms_user SET username=@username, first_name=@firstname, last_name=@lastname, email_address=@email, type_id=@type WHERE id=@id;", con);
+                SqlCommand cmd = new SqlCommand("UPDATE pms_user SET username=@username,password=@password, first_name=@firstname, last_name=@lastname, email_address=@email, type_id=@type WHERE id=@id;", con);
 
                 cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = uUsername;
+                cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = uPass;
                 cmd.Parameters.Add("@firstname", SqlDbType.VarChar).Value = uFirstName;
                 cmd.Parameters.Add("@lastname", SqlDbType.VarChar).Value = uLastName;
                 cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = uEmail;

@@ -162,7 +162,13 @@
                             <ItemStyle Height="25px" HorizontalAlign="Center" VerticalAlign="Middle"  />
                         </asp:BoundField>
 
-                        <asp:BoundField DataField="First_Name" HeaderText="First name" SortExpression="First_Name"><HeaderStyle Width="125px" Height="20px" HorizontalAlign="Center" VerticalAlign="Middle" />
+                         <asp:BoundField DataField="Password" HeaderText="Password" SortExpression="Password">
+                            <HeaderStyle Width="100px" Height="20px" HorizontalAlign="Center" VerticalAlign="Middle" />
+                            <ItemStyle Height="25px" HorizontalAlign="Center" VerticalAlign="Middle"  />
+                        </asp:BoundField>
+                         
+
+                        <asp:BoundField DataField="First_Name" HeaderText="First name" SortExpression="First_Name">
                             <HeaderStyle Width="100px" Height="20px" HorizontalAlign="Center" VerticalAlign="Middle" />
                             <ItemStyle Height="25px" HorizontalAlign="Center" VerticalAlign="Middle"  />
                         </asp:BoundField>

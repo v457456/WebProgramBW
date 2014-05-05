@@ -11,7 +11,6 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
-
      <div>
         <h1 align="center">Manage Industries</h1>
         <br />

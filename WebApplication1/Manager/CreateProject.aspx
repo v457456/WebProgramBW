@@ -35,12 +35,10 @@
             height: 40px;
         }
     </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
 
-    <div>
-        <hr style="width:75%; margin-left:auto; margin-right:auto"/>
-        <br />
         <h1 align="center">Create A Project</h1>
         <br />
        Please enter the user&#39;s information below. Click &#39;Submit&#39; when all of the 
@@ -97,16 +95,21 @@
             <td class="style26" align="right">
                 Start Date:</td>
             <td class="style27" align="left">
-                <input runat="server" id="start" type="text" />
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="start"
-                    ErrorMessage="Start date is required" ToolTip="Start date is required"
-                    ValidationGroup="create">*</asp:RequiredFieldValidator>
-               <!-- <asp:RegularExpressionValidator runat="server" display="Dynamic"
+                &nbsp;<!-- <asp:RegularExpressionValidator runat="server" display="Dynamic"
                     controltovalidate="start" 
                     errormessage="Start date must in MM/DD/YYYY format." ToolTip="Start date must in MM/DD/YYYY format."  
                     validationexpression="/^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d+$/" 
                     ValidationGroup="create">
-                    Start date must in MM/DD/YYYY format.</asp:RegularExpressionValidator> -->
+                    Start date must in MM/DD/YYYY format.</asp:RegularExpressionValidator> --><input runat="server" id="start" type="text" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="start"
+                    ErrorMessage="Start date is required" ToolTip="Start date is required"
+                    ValidationGroup="create" ID="RequiredFieldValidator1">*</asp:RequiredFieldValidator>
+              <!--  <asp:RegularExpressionValidator runat="server" display="Dynamic"
+                    controltovalidate="end" 
+                    errormessage="End date must in MM/DD/YYYY format." ToolTip="End date must in MM/DD/YYYY format."  
+                    validationexpression="/^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d+$/" 
+                    ValidationGroup="create">
+                    End date must in MM/DD/YYYY format.</asp:RegularExpressionValidator> -->
             </td>
             <td class="style28" align="left">
                 </td>
@@ -179,12 +182,12 @@
                 </td>
             <td class="style28" align="left">
 
-<asp:Button runat="server" Text="Submit" ID="submitButton" onclick="submitButton_Click" validationgroup="create"/>
+            <asp:Button runat="server" Text="Submit" ID="submitButton" onclick="submitButton_Click" ValidationGroup="create"/>
             </td>
         </tr>
     </table>
     </div>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+    
 <script type="text/javascript">
     $("#<%=start.ClientID%>").datepicker();
     $("#<%=end.ClientID%>").datepicker();

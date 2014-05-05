@@ -13,7 +13,7 @@ using System.Data;
 namespace WebApplication1 {
     public class Global : System.Web.HttpApplication {
 
-        private static string ConnectionString = WebConfigurationManager.ConnectionStrings["group3local"].ToString();
+        private static string ConnectionString = WebConfigurationManager.ConnectionStrings["vanlocal"].ToString();
         public const int ManagerUserType = 1;
         public const int AdminUserType = 2;
         public const bool isDebug = false;

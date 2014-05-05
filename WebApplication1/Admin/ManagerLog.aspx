@@ -3,13 +3,16 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT [date_time], [copy_userid], [copy_username], [copy_userfirstname], [copy_userlastname], [copy_projectid], [copy_projectname], [description] FROM [pms_log_project]"></asp:SqlDataSource>
-
+    <h1 align="center">Manager Logs</h1>
+        <br />
+        <hr style="width:90%; margin-left:auto; margin-right:auto; margin-bottom:15px;margin-top: 5px;"/>
+        <br />
     <div align="center">
         <asp:GridView ID="GridView1" runat="server" AllowPaging="True" GridLines="None" BackColor="#B3C0C4" 
                     AllowSorting="True" AutoGenerateColumns="False" BorderColor="Gray" 
                     BorderStyle="Solid" BorderWidth="1px" CellPadding="4" CellSpacing="1" 
                     ForeColor="#333333" 
-                    DataSourceID="SqlDataSource1" style="text-align: center" Width="100%" >
+                    DataSourceID="SqlDataSource1" style="text-align: center" Width="100%" PageSize="25">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:BoundField DataField="date_time" HeaderText="Date" SortExpression="date_time"></asp:BoundField>
