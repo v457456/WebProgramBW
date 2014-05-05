@@ -89,11 +89,9 @@
                 <td align="right" class="style2">
                     User Type:</td>
                 <td align="left" class="style1">
-                    <asp:DropDownList ID="DropDownList1" runat="server">
-                        <asp:ListItem>Select a User Type</asp:ListItem>
-                        <asp:ListItem>Manager</asp:ListItem>
-                        <asp:ListItem>Administrator</asp:ListItem>
+                    <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="name" DataValueField="id">
                     </asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" SelectCommand="SELECT * FROM [pms_user_type]"></asp:SqlDataSource>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="DropDownList1"
                     ErrorMessage="Selection Required!" InitialValue="Select a User Type" ValidationGroup="SubmitGroup"></asp:RequiredFieldValidator>
                 </td>
