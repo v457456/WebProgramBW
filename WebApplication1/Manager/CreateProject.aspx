@@ -55,7 +55,19 @@
             <td class="style26" align="right">
                 Project Name:</td>
             <td class="style27" align="left">
-                <input id="name" type="text" /></td>
+                <input runat="server" id="pname" type="text" />
+                
+                <asp:RequiredFieldValidator ID="namereq" runat="server" ControlToValidate="pname"
+                    ErrorMessage="Project Name is required" ToolTip="Project Name is required"
+                    ValidationGroup="create">*</asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator runat="server" display="Dynamic"
+                    controltovalidate="pname" 
+                    errormessage="Project name must be 3-15 characters." ToolTip="Project name must be 3-15 characters."  
+                    validationexpression="[a-zA-Z]{3,15}" 
+                    ValidationGroup="create">
+                    Project Name must be 3-15 characters.</asp:RegularExpressionValidator>
+
+            </td>
             <td class="style28" align="left">
             </td>
         </tr>
@@ -63,11 +75,9 @@
             <td class="style26" align="right">
                 Customer:</td>
             <td class="style27" align="left">
-                <asp:DropDownList ID="DropDownList1" runat="server" Height="28px" Width="190px">
-                    <asp:ListItem>Please Select a Customer</asp:ListItem>
-                    <asp:ListItem>Customer 1</asp:ListItem>
-                    <asp:ListItem>Customer 2</asp:ListItem>
+                <asp:DropDownList ID="cust" runat="server" Height="28px" Width="190px" DataSourceID="SqlDataSourceCust" DataTextField="name" DataValueField="id">
                 </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSourceCust" runat="server" SelectCommand="SELECT [id], [name] FROM [pms_customer]"></asp:SqlDataSource>
             </td>
             <td class="style28" align="left">
             </td>
@@ -76,11 +86,9 @@
             <td class="style26" align="right">
                 Industry:</td>
             <td class="style27" align="left">
-                <asp:DropDownList ID="DropDownList2" runat="server" Height="28px" Width="190px">
-                    <asp:ListItem>Please Select an Industry</asp:ListItem>
-                    <asp:ListItem>Industry 1</asp:ListItem>
-                    <asp:ListItem>Industry 2</asp:ListItem>
+                <asp:DropDownList ID="ind" runat="server" Height="28px" Width="190px" DataSourceID="SqlDataSourceInd" DataTextField="name" DataValueField="id">
                 </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSourceInd" runat="server" SelectCommand="SELECT * FROM [pms_industry]"></asp:SqlDataSource>
             </td>
             <td class="style28" align="left">
                 </td>
@@ -89,7 +97,38 @@
             <td class="style26" align="right">
                 Start Date:</td>
             <td class="style27" align="left">
-                <input id="name0" type="text" /></td>
+                <input runat="server" id="start" type="text" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="start"
+                    ErrorMessage="Start date is required" ToolTip="Start date is required"
+                    ValidationGroup="create">*</asp:RequiredFieldValidator>
+               <!-- <asp:RegularExpressionValidator runat="server" display="Dynamic"
+                    controltovalidate="start" 
+                    errormessage="Start date must in MM/DD/YYYY format." ToolTip="Start date must in MM/DD/YYYY format."  
+                    validationexpression="/^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d+$/" 
+                    ValidationGroup="create">
+                    Start date must in MM/DD/YYYY format.</asp:RegularExpressionValidator> -->
+            </td>
+            <td class="style28" align="left">
+                </td>
+        </tr>
+        <tr class="style22">
+            <td class="style26" align="right">
+                Start Date Flexability:</td>
+            <td class="style27" align="left">
+                <div style="display: inline-block; vertical-align: middle; margin: 0 3px 0 3px;">+/-</div>
+                <input id="sflex" type="text" runat="server" clientidmode="Static" maxlength="2" style="width: 30px" />
+                <div style="display: inline-block; vertical-align: middle;">Weeks</div>
+
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="sflex"
+                    ErrorMessage="Start flexibility is required" ToolTip="Start flexibility is required"
+                    ValidationGroup="create">*</asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator runat="server" display="Dynamic"
+                    controltovalidate="sflex" 
+                    errormessage="Start flexibility must be 0-9." ToolTip="Start flexibility must be 0-9."  
+                    validationexpression="[0-9]" 
+                    ValidationGroup="create">
+                    Start flexibility must be 0-9.</asp:RegularExpressionValidator>
+            </td>
             <td class="style28" align="left">
                 </td>
         </tr>
@@ -97,7 +136,38 @@
             <td class="style26" align="right">
                 End Date:</td>
             <td class="style27" align="left">
-                <input id="name1" type="text" /></td>
+                <input runat="server" id="end" type="text" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="end"
+                    ErrorMessage="End date is required" ToolTip="End date is required"
+                    ValidationGroup="create">*</asp:RequiredFieldValidator>
+              <!--  <asp:RegularExpressionValidator runat="server" display="Dynamic"
+                    controltovalidate="end" 
+                    errormessage="End date must in MM/DD/YYYY format." ToolTip="End date must in MM/DD/YYYY format."  
+                    validationexpression="/^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d+$/" 
+                    ValidationGroup="create">
+                    End date must in MM/DD/YYYY format.</asp:RegularExpressionValidator> -->
+            </td>
+            <td class="style28" align="left">
+                </td>
+        </tr>
+        <tr class="style22">
+            <td class="style26" align="right">
+                End Date Flexability:</td>
+            <td class="style27" align="left">
+                <div style="display: inline-block; vertical-align: middle; margin: 0 3px 0 3px;">+/-</div>
+                <input id="eflex" type="text" runat="server" clientidmode="Static" maxlength="2" style="width: 30px" />
+                <div style="display: inline-block; vertical-align: middle;">Weeks</div>
+
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="eflex"
+                    ErrorMessage="End flexibility is required" ToolTip="End flexibility is required"
+                    ValidationGroup="create">*</asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator runat="server" display="Dynamic"
+                    controltovalidate="eflex" 
+                    errormessage="End flexibility must be 0-9." ToolTip="End flexibility must be 0-9."  
+                    validationexpression="[0-9]" 
+                    ValidationGroup="create">
+                    End flexibility must be 0-9.</asp:RegularExpressionValidator>
+            </td>
             <td class="style28" align="left">
                 </td>
         </tr>
@@ -105,31 +175,19 @@
             <td class="style26" align="right">
                 </td>
             <td class="style27" align="left">
+                <asp:Label ID="outputLabel" runat="server" Text="Project Successfully Added!" Visible="False"></asp:Label>
                 </td>
             <td class="style28" align="left">
 
-<input type="submit" value="Submit" /></td>
+<asp:Button runat="server" Text="Submit" ID="submitButton" onclick="submitButton_Click" validationgroup="create"/>
+            </td>
         </tr>
     </table>
-    <br />
-
-<!-- Grab customers from DB -->
-    <br />
-<br />
-
-<!-- Grab industries from DB -->
-    <br />
-<br />
-
-<!-- Calendar Thingys! -->
-    <br />
-
-<br />
-
-
-
-<br />
-
-&nbsp;</div>
+    </div>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+<script type="text/javascript">
+    $("#<%=start.ClientID%>").datepicker();
+    $("#<%=end.ClientID%>").datepicker();
+</script>
 
 </asp:Content>
